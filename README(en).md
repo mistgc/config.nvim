@@ -19,6 +19,8 @@ git clone https://github.com/Ge0rgeCai/MYVIM.git
 Or Use "Github CLI"
 gh repo clone Ge0rgeCai/MYVIM
 ```
+Use `.vimrc` to configurate Vim
+And use `_vimrc` to configurate Gvim
 ## Dependence
 - [vim-plug](https://github.com/junegunn/vim-plug) Plug-in manager
 - [coc.nvim](https://github.com/neoclide/coc.nvim) Automatic compeltion of code

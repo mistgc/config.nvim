@@ -19,6 +19,8 @@ git clone https://github.com/Ge0rgeCai/MYVIM.git
 Or Use "Github CLI"
 gh repo clone Ge0rgeCai/MYVIM
 ```
+在vim中使用`.vimrc`来配置文件
+在gvim中使用`_vimrc`来配置文件
 ## 依赖
 - [vim-plug](https://github.com/junegunn/vim-plug) 插件管理器
 - [coc.nvim](https://github.com/neoclide/coc.nvim) 代码自动补全插件
