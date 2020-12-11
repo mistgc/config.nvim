@@ -4,7 +4,7 @@
 - [Install](#Install)
 - [Dependence](#Dependence)
 - [Issues](#Issues)
-- [ContentLink](#Partial content links)
+- [PartialContentLinks](#PartialContentLinks)
 
 ## Introduction
 This is my preference for the VIM configuration,which is included
@@ -31,5 +31,5 @@ Add the following code to end of your `hosts` to solve this problem.
 ``` bash
 199.232.28.133 raw.githubusercontent.com
 ```
-## Partial content links
+## PartialContentLinks
  Theme：[vim-one](https://github.com/rakr/vim-one) 
