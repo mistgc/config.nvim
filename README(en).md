@@ -4,7 +4,7 @@
 - [Install](#Install)
 - [Dependence](#Dependence)
 - [Issues](#Issues)
-- [Partial content links](#Partial content links)
+- [ContentLink](#Partial content links)
 
 ## Introduction
 This is my preference for the VIM configuration,which is included
