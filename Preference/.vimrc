@@ -101,6 +101,5 @@ filetype off " required
 call plug#begin()
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'liuchengxu/space-vim-dark'
 call plug#end()
 
