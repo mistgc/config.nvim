@@ -4,6 +4,7 @@
 - [安装](#安装)
 - [依赖](#依赖)
 - [问题](#问题)
+- [部分内容作者](#部分内容作者)
 
 ## 介绍
 这是一个我个人所偏好的VIM配置，里面的内容包括了
@@ -14,9 +15,9 @@
 ## 安装
 首先将clone这个包到你合适的目录中.
 ```bash
-git clone https://
+git clone https://github.com/Ge0rgeCai/MYVIM.git
 Or Use "Github CLI"
-gh repo clone 
+gh repo clone Ge0rgeCai/MYVIM
 ```
 ## 依赖
 - [vim-plug](https://github.com/junegunn/vim-plug) 插件管理器
@@ -29,3 +30,5 @@ gh repo clone
 ```
 199.232.28.133 raw.githubusercontent.com
 ```
+## 部分内容链接
+ 主题：[vim-one](https://github.com/rakr/vim-one) 
