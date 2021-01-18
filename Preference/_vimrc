@@ -95,6 +95,7 @@ set cindent "使用C样式的缩进
 autocmd FileType make set noexpandtab "当文件类型是make的时候，
 set noexpandtab
 imap <F6> <C-x><C-o>
+nmap \ :noh<Enter>
 set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim状态栏的显示信息
 set nocompatible " be iMproved, required
 filetype off " required
