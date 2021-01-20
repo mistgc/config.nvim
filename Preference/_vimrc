@@ -1,42 +1,28 @@
-" Vim with all enhancements
-source $VIMRUNTIME/vimrc_example.vim
-
-" Use the internal diff if available.
-" Otherwise use the special 'diffexpr' for Windows.
-if &diffopt !~# 'internal'
-  set diffexpr=MyDiff()
-endif
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg1 = substitute(arg1, '!', '\!', 'g')
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg2 = substitute(arg2, '!', '\!', 'g')
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let arg3 = substitute(arg3, '!', '\!', 'g')
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      if empty(&shellxquote)
-        let l:shxq_sav = ''
-        set shellxquote&
-      endif
-      let cmd = '"' . $VIMRUNTIME . '\diff"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  let cmd = substitute(cmd, '!', '\!', 'g')
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-  if exists('l:shxq_sav')
-    let &shellxquote=l:shxq_sav
-  endif
+"My Vim/Neovim Preferance
+"Add Parentheses function
+function! CopyX()
+		if(col("v")>col("."))
+				let l1 = col(".")
+				let l2 = col("v")
+		else
+				let l1 = col("v")
+				let l2 = col(".")
+		endif
+		call setreg('x',getline(".")[l1-1:l2-1])
+		return ''
+endfunction
+vnoremap <expr><C-l> CopyX()."c"
+		\ .Addparentheses(getchar())."<Esc>"
+function! Addparentheses(n)
+		if a:n == 123
+				return "{".getreg('x')."}"
+		elseif a:n == 40
+				return "(".getreg('x').")"
+		elseif a:n == 91
+				return "[".getreg('x')."]"
+		elseif a:n == 34
+				return "\"".getreg('x')."\""
+		endif
 endfunction
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -72,7 +58,6 @@ set softtabstop=4 "(ÈíÖÆ±í·û¿í¶È,ÉèÖÃÎª·ÇÁãÊıÖµºóÊ¹ÓÃ Tab ¼üºÍ Backspace Ê±¹â±êÒ
 "set shiftwidth=4 "Ö¸ÓÃ>>»ò<<½øĞĞËõ½øµÄ¿Õ¸ñÊı,ÀıÈçset
 "shiftwidth=20,ÔÙ°´>>¾ÍÏò×óÒÆ¶¯20¸ö¿Õ¸ñµÄ¾àÀë.
 ""Õâ20¸ö¿Õ¸ñµÄ¾àÀëÊÇÓÃtabstopÀ´×ª»»µÄ,ÀıÈçtabstop=5,ÄÇ°´>>µÄ½á¹û¾ÍÊÇÓÃ4¸ötabÀ´Ìî³ä.
-
 set hls "¸ßÁÁÏÔÊ¾ËÑË÷½á¹û µÈÍ¬ÓÚ set hlsearch
 set showmatch "¸ßÁÁÏÔÊ¾Æ¥ÅäµÄÀ¨ºÅ
 set whichwrap+=<,>,h,l "ÔÊĞíbackspaceºÍ¹â±ê¼ü¿çÔ½ĞĞ±ß½ç
@@ -80,21 +65,17 @@ set whichwrap+=<,>,h,l "ÔÊĞíbackspaceºÍ¹â±ê¼ü¿çÔ½ĞĞ±ß½ç
 ""set mouse=a "Êó±ê×ÜÊÇ¿ÉÓÃ
 set showcmd
 set wildmenu
-
 set smartindent "ÔİÊ±»¹²»Çå³ş×öÊ²Ã´ÓÃµÄ
-
 "set encoding=utf-8
 ""Õâ¸öÄ¿Ç°»¹²»È·¶¨Ğè²»ĞèÒªÅäÖÃ£¬¸ÃÔõÃ´ÅäÖÃ£¬ÕâÊÇVIMÄÚ²¿Ê¹ÓÃµÄ±àÂë·½Ê½
 "set fileencoding=utf-8 "²»ĞèÒªÅäÖÃ
 "VimÆô¶¯Ê±»á°´ÕÕËüËùÁĞ³öµÄ×Ö·û±àÂë·½Ê½ÖğÒ»Ì½²â¼´½«´ò¿ªµÄÎÄ¼şµÄ×Ö·û±àÂë·½Ê½£¬²¢ÇÒ½« fileencoding ÉèÖÃÎª×îÖÕÌ½²âµ½µÄ×Ö·û±àÂë·½Ê½
 set fileencodings=ucs-bom,utf-8,gbk "ÕâÀïºÜÖØÒª£¬ÕâÒ»ĞĞ±íÊ¾vim±àÂë¸ñÊ½ÒÀ´ÎÑ¡Ôñ
 "½âÊÍ:¼ÓÈëGBK,¿ÉÖ§³ÖGBK±àÂëµÄ
-"
 set ignorecase "ËÑË÷Ê±ºöÂÔ´óĞ¡Ğ´
 set cindent "Ê¹ÓÃCÑùÊ½µÄËõ½ø
 autocmd FileType make set noexpandtab "µ±ÎÄ¼şÀàĞÍÊÇmakeµÄÊ±ºò£¬
 set noexpandtab
-imap <F6> <C-x><C-o>
 nmap \ :noh<Enter>
 set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim×´Ì¬À¸µÄÏÔÊ¾ĞÅÏ¢
 set nocompatible " be iMproved, required
@@ -102,5 +83,6 @@ filetype off " required
 call plug#begin()
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
