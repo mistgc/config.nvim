@@ -33,4 +33,6 @@ gh repo clone Ge0rgeCai/MYVIM
 199.232.28.133 raw.githubusercontent.com
 ```
 ## 部分内容链接
- 主题：[vim-one](https://github.com/rakr/vim-one) 
+ 主题：
+[vim-one](https://github.com/rakr/vim-one) 
+[molokai](https://github.com/tomasr/molokai)
