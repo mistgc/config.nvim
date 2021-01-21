@@ -34,6 +34,6 @@ Add the following code to end of your `hosts` to solve this problem.
 199.232.28.133 raw.githubusercontent.com
 ```
 ## PartialContentLinks
- Theme：
-[vim-one](https://github.com/rakr/vim-one)
+ Theme：<br/>
+[vim-one](https://github.com/rakr/vim-one)<br/>
 [molokai](https://github.com/tomasr/molokai)
