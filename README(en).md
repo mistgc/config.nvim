@@ -34,7 +34,7 @@ Add the following code to end of your `hosts` to solve this problem.
 199.232.28.133 raw.githubusercontent.com
 ```
 ### Change of Keys(Optional)
-The `<Esc>` is often used,so swapping <Esc> with <Caps_Lock> can make it more convenient for us.
+The `<Esc>` is often used,so swapping `<Esc>` with `<Caps_Lock>` can make it more convenient for us.
 1. **Windows**:<br/>
 It is mainly using registry to change keys,in Windows OS.
 - Writing the following code into `caps.reg` and RUN.
