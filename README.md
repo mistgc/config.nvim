@@ -35,7 +35,7 @@ gh repo clone Ge0rgeCai/MYVIM
 ```
 ### 键位修改(可选)
 在vim中因为经常使用`<ESC>`,所以我更愿意将`<Caps_Lock>`与`<ESC>`键位进行交换<br/>
-1. Windows:
+1. **Windows**:<br/>
 在Windows中主要是通过注册表进行键位更换的。
 - 将下列代码保存为caps.reg文件，运行即可。
 ```
@@ -54,7 +54,7 @@ Windows Registry Editor Version 5.00
 0010 3a 00 01 00 00 00 00 00
 0018
 ```
-2. Linux:
+2. **Linux**:<br/>
 Linux用户可以通过创建一个`keys.conf`文件，并且使用`loadkeys keys.conf`命令来改变linux键盘驱动程序转译键盘输入过程。
 #keys.conf文件内容
 ```

@@ -35,7 +35,7 @@ Add the following code to end of your `hosts` to solve this problem.
 ```
 ### Change of Keys(Optional)
 The `<Esc>` is often used,so swapping <Esc> with <Caps_Lock> can make it more convenient for us.
-1. Windows:
+1. **Windows**:<br/>
 It is mainly using registry to change keys,in Windows OS.
 - Writing the following code into `caps.reg` and RUN.
 ```
@@ -54,7 +54,7 @@ Windows Registry Editor Version 5.00
 0010 3a 00 01 00 00 00 00 00
 0018
 ```
-2. Linux:
+2. **Linux**:<br/>
 Linux users can create `keys.conf` and use command `loadkeys keys.conf` to change the translation from Linux keyboard driver to keyboard input.
 #keys.conf file
 ```
