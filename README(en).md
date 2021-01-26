@@ -33,6 +33,35 @@ Add the following code to end of your `hosts` to solve this problem.
 ``` bash
 199.232.28.133 raw.githubusercontent.com
 ```
+### Change of Keys(Optional)
+The `<Esc>` is often used,so swapping <Esc> with <Caps_Lock> can make it more convenient for us.
+1. Windows:
+It is mainly using registry to change keys,in Windows OS.
+- Writing the following code into `caps.reg` and RUN.
+```
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+"Scancode Map"=hex:00,00,00,00,00,00,00,00,03,00,00,00,01,00,3a,00,3a,00,01,00,00,00,00,00
+```
+- Using `regedit` to add it manually.
+`Win`+`R`--> typing `regedit` --> To find `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout`
+--> RightClick `Keyboard Layout` --> "New Flie" or "New" --> "binary value" --> Renamed "Scancode Map" --> "edit"
+--> Typing the following value:
+```
+0000 00 00 00 00 00 00 00 00
+0008 03 00 00 00 01 00 3a 00
+0010 3a 00 01 00 00 00 00 00
+0018
+```
+2. Linux:
+Linux users can create `keys.conf` and use command `loadkeys keys.conf` to change the translation from Linux keyboard driver to keyboard input.
+#keys.conf file
+```
+keycode 1 = Caps_Lock
+keycode 58 = Escape
+```
+But this way maybe fail in some desktop environment.
 ## PartialContentLinks
  Theme：<br/>
 [vim-one](https://github.com/rakr/vim-one)<br/>
