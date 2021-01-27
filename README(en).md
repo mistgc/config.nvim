@@ -19,8 +19,9 @@ git clone https://github.com/Ge0rgeCai/MYVIM.git
 Or Use "Github CLI"
 gh repo clone Ge0rgeCai/MYVIM
 ```
-Use `.vimrc` to configurate Vim
-And use `_vimrc` to configurate Gvim
+Use `.vimrc` to configurate Vim<br/>
+Use `_vimrc` to configurate Gvim<br/>
+Use `init.vim` to configurate Neovim
 ## Dependence
 - [vim-plug](https://github.com/junegunn/vim-plug) Plug-in manager
 - [coc.nvim](https://github.com/neoclide/coc.nvim) Automatic compeltion of code
@@ -61,7 +62,7 @@ Linux users can create `keys.conf` and use command `loadkeys keys.conf` to chang
 keycode 1 = Caps_Lock
 keycode 58 = Escape
 ```
-But this way maybe fail in some desktop environment.
+But this way maybe fail in some desktop environment.More solutions can be found online.
 ## PartialContentLinks
  Theme：<br/>
 [vim-one](https://github.com/rakr/vim-one)<br/>
