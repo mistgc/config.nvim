@@ -48,11 +48,13 @@ set relativenumber "相对行号
 set noundofile
 set nobackup
 set noswapfile
+"set spell "拼写检查
 syntax enable
-colorscheme one
-set t_Co=256
+colorscheme molokai
+"set t_Co=256
 set expandtab "(是否在缩进和遇到 Tab 键时使用空格替代;使用 noexpandtab 取消设置)
 set tabstop=4 "用多少个空格来显示一个制表符，只是用来显示。
+set shiftwidth=4 "缩进长度
 set softtabstop=4 "(软制表符宽度,设置为非零数值后使用 Tab 键和 Backspace 时光标移动的格数等于该数值,但实际插入的字符仍受 tabstop 和 expandtab 控制);
 "一般不要使用该设置 或 使该值等于你想要的一个制表符的宽度
 "set shiftwidth=4 "指用>>或<<进行缩进的空格数,例如set
@@ -65,6 +67,7 @@ set whichwrap+=<,>,h,l "允许backspace和光标键跨越行边界
 ""set mouse=a "鼠标总是可用
 set showcmd
 set wildmenu
+set hidden "允许没有进行修改退出buffer
 set smartindent "暂时还不清楚做什么用的
 "set encoding=utf-8
 ""这个目前还不确定需不需要配置，该怎么配置，这是VIM内部使用的编码方式
@@ -76,7 +79,13 @@ set ignorecase "搜索时忽略大小写
 set cindent "使用C样式的缩进
 autocmd FileType make set noexpandtab "当文件类型是make的时候，
 set noexpandtab
+set cursorline
+"常用按键设置
 nmap \ :noh<Enter>
+nmap ,, :tabedit<Enter>
+nmap ; gt
+"选择单词 (select word)
+map <space> viw
 set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim状态栏的显示信息
 set nocompatible " be iMproved, required
 filetype off " required
@@ -85,4 +94,3 @@ Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
-
