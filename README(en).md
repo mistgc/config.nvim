@@ -26,7 +26,7 @@ Use `init.vim` to configurate Neovim
 - [vim-plug](https://github.com/junegunn/vim-plug) Plug-in manager
 - [coc.nvim](https://github.com/neoclide/coc.nvim) Automatic compeltion of code
 ## Issues
-### hosts
+### Hosts
 The download may fail when installing `vim-plug`.
 The may be the problem with `hosts`.
 You can modify the `hosts`to solve the hosts problem.
