@@ -24,6 +24,8 @@ function! Addparentheses(n)
 				return "\"".getreg('x')."\""
 		endif
 endfunction
+
+
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 "使golang中的func等高亮
@@ -48,9 +50,20 @@ set relativenumber "相对行号
 set noundofile
 set nobackup
 set noswapfile
+set foldmethod = manual
 "set spell "拼写检查
 syntax enable
-colorscheme molokai
+"colorscheme molokai
+autocmd VimEnter * NERDTree | wincmd p
+autocmd BufWinEnter * silent NERDTreeMirror
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+     \ quit | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
 "set t_Co=256
 set expandtab "(是否在缩进和遇到 Tab 键时使用空格替代;使用 noexpandtab 取消设置)
 set tabstop=4 "用多少个空格来显示一个制表符，只是用来显示。
@@ -64,7 +77,7 @@ set hls "高亮显示搜索结果 等同于 set hlsearch
 set showmatch "高亮显示匹配的括号
 set whichwrap+=<,>,h,l "允许backspace和光标键跨越行边界
 "set cursorline "在光标当先行底部显示一条线，以标识出当前光标所在行
-""set mouse=a "鼠标总是可用
+set mouse=a "鼠标总是可用
 set showcmd
 set wildmenu
 set hidden "允许没有进行修改退出buffer
@@ -83,7 +96,12 @@ set cursorline
 "常用按键设置
 nmap \ :noh<Enter>
 nmap ,, :tabedit<Enter>
-nmap ; gt
+nnoremap <C-l> gt
+nnoremap <C-h> gT
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 "选择单词 (select word)
 map <space> viw
 set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim状态栏的显示信息
@@ -93,4 +111,6 @@ call plug#begin()
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+Plug 'chemzqm/wxapp.vim'
 call plug#end()
