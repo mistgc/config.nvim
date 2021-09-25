@@ -1,31 +1,4 @@
 "My Vim/Neovim Preferance
-"Add Parentheses function
-function! CopyX()
-		if(col("v")>col("."))
-				let l1 = col(".")
-				let l2 = col("v")
-		else
-				let l1 = col("v")
-				let l2 = col(".")
-		endif
-		call setreg('x',getline(".")[l1-1:l2-1])
-		return ''
-endfunction
-vnoremap <expr><C-l> CopyX()."c"
-		\ .Addparentheses(getchar())."<Esc>"
-function! Addparentheses(n)
-		if a:n == 123
-				return "{".getreg('x')."}"
-		elseif a:n == 40
-				return "(".getreg('x').")"
-		elseif a:n == 91
-				return "[".getreg('x')."]"
-		elseif a:n == 34
-				return "\"".getreg('x')."\""
-		endif
-endfunction
-
-
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 "Ê¹golangÖĞµÄfuncµÈ¸ßÁÁ
@@ -50,19 +23,21 @@ set relativenumber "Ïà¶ÔĞĞºÅ
 set noundofile
 set nobackup
 set noswapfile
-set foldmethod = manual
+"set foldmethod = manual
 "set spell "Æ´Ğ´¼ì²é
 syntax enable
+
+"NERDTREE_CONFIG
 "colorscheme molokai
-autocmd VimEnter * NERDTree | wincmd p
-autocmd BufWinEnter * silent NERDTreeMirror
+"autocmd VimEnter * NERDTree | wincmd p
+"autocmd BufWinEnter * silent NERDTreeMirror
 " Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-     \ quit | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+"     \ quit | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+"    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 "set t_Co=256
 set expandtab "(ÊÇ·ñÔÚËõ½øºÍÓöµ½ Tab ¼üÊ±Ê¹ÓÃ¿Õ¸ñÌæ´ú;Ê¹ÓÃ noexpandtab È¡ÏûÉèÖÃ)
@@ -76,7 +51,7 @@ set softtabstop=4 "(ÈíÖÆ±í·û¿í¶È,ÉèÖÃÎª·ÇÁãÊıÖµºóÊ¹ÓÃ Tab ¼üºÍ Backspace Ê±¹â±êÒ
 set hls "¸ßÁÁÏÔÊ¾ËÑË÷½á¹û µÈÍ¬ÓÚ set hlsearch
 set showmatch "¸ßÁÁÏÔÊ¾Æ¥ÅäµÄÀ¨ºÅ
 set whichwrap+=<,>,h,l "ÔÊĞíbackspaceºÍ¹â±ê¼ü¿çÔ½ĞĞ±ß½ç
-"set cursorline "ÔÚ¹â±êµ±ÏÈĞĞµ×²¿ÏÔÊ¾Ò»ÌõÏß£¬ÒÔ±êÊ¶³öµ±Ç°¹â±êËùÔÚĞĞ
+set cursorline "ÔÚ¹â±êµ±ÏÈĞĞµ×²¿ÏÔÊ¾Ò»ÌõÏß£¬ÒÔ±êÊ¶³öµ±Ç°¹â±êËùÔÚĞĞ
 set mouse=a "Êó±ê×ÜÊÇ¿ÉÓÃ
 set showcmd
 set wildmenu
@@ -92,18 +67,18 @@ set ignorecase "ËÑË÷Ê±ºöÂÔ´óĞ¡Ğ´
 set cindent "Ê¹ÓÃCÑùÊ½µÄËõ½ø
 autocmd FileType make set noexpandtab "µ±ÎÄ¼şÀàĞÍÊÇmakeµÄÊ±ºò£¬
 set noexpandtab
-set cursorline
 "³£ÓÃ°´¼üÉèÖÃ
-nmap \ :noh<Enter>
-nmap ,, :tabedit<Enter>
+nmap ,, :tabedit<CR>
+map <backspace> :noh<CR>
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>fs :tabedit ~/AppData/Local/nvim/init.vim<CR>
 "Ñ¡Ôñµ¥´Ê (select word)
-map <space> viw
+nnoremap <space> viw
 set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim×´Ì¬À¸µÄÏÔÊ¾ĞÅÏ¢
 set nocompatible " be iMproved, required
 filetype off " required
@@ -111,6 +86,6 @@ call plug#begin()
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'chemzqm/wxapp.vim'
 call plug#end()
