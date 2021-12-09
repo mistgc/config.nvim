@@ -1,6 +1,23 @@
-"My Vim/Neovim Preferance
+"============================
+"*	File Name: init.vim
+"*	Created Date: 12/9/2021 4:27:11 PM
+"*	Last Modified Date:12/9/2021 8:00:17 PM
+"*	Author: mistgc
+"*	Email: georgecai0908@outlook.com
+"============================*/
+"=======================================
+"	           _     _             
+"	 _ __ ___ (_)___| |_ __ _  ___ 
+"	| '_ ` _ \| / __| __/ _` |/ __|
+"	| | | | | | \__ \ || (_| | (__ 
+"	|_| |_| |_|_|___/\__\__, |\___|
+"                    |___/      
+"
+"=======================================
+
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+"使golang中的func等高亮
 "使golang中的func等高亮
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -9,6 +26,48 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 "disable warning:"vim-go: initialized gopls""
 let g:go_gopls_enabled = 0
+
+" ==============================================================
+" Auto add title of file.
+" ==============================================================
+"
+autocmd BufNewFile *.cpp,*.cc,*.c,*.vim,*.sql exec ":call SetTitle()"
+autocmd BufWrite * exec ":call SetModifiedTime()"
+func SetTitle()
+	let type = expand("%:e")		"Get type of file.
+	if type == 'cpp' || type == 'cc' || type == 'c' || type == 'sql'
+		call setline(1, "/*============================")
+		call append(line("."), "*	File Name: ".expand("%"))
+		call append(line(".")+1, "*	Created Date: ".strftime("%c"))
+		call append(line(".")+2, "*	Last Modified Date: ".strftime("%c"))
+		call append(line(".")+3, "*	Author: mistgc")
+		call append(line(".")+4, "*	Email: georgecai0908@outlook.com")
+		call append(line(".")+5, "============================*/")
+	endif
+	if type == 'vim'
+		call setline(1, "\"============================")
+		call append(line("."), "\"*	File Name: ".expand("%"))
+		call append(line(".")+1, "\"*	Created Date: ".strftime("%c"))
+		call append(line(".")+2, "\"*	Last Modified Date: ".strftime("%c"))
+		call append(line(".")+3, "\"*	Author: mistgc")
+		call append(line(".")+4, "\"*	Email: georgecai0908@outlook.com")
+		call append(line(".")+5, "\"============================*/")
+	endif
+endfunc
+func SetModifiedTime()
+	let type = expand("%:e")		"Get type of file.
+	if type == 'cpp' || type == 'cc' || type == 'c' || type == 'sql'
+		let modif_time = strftime("%c")
+		let line = '*	Last Modified Date:'.modif_time
+		call setline(4, line)
+	endif
+	if type == 'vim'
+		let modif_time = strftime("%c")
+		let line = '"*	Last Modified Date:'.modif_time
+		call setline(4, line)
+	endif
+endfunc
+" ==============================================================
 
 "Nvim-go
 if exists('g:loaded_hello')
@@ -102,18 +161,24 @@ set ignorecase "搜索时忽略大小写
 set cindent "使用C样式的缩进
 autocmd FileType make set noexpandtab "当文件类型是make的时候，
 set noexpandtab
+
 "常用按键设置
 nmap ,, :tabedit<CR>
-map <backspace> :noh<CR>
+nnoremap <backspace> :noh<CR>
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <leader>fs :tabedit ~/AppData/Local/nvim/init.vim<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-nnoremap <leader>fs :tabedit ~/AppData/Local/nvim/init.vim<CR>
+vnoremap Y "+y
+vnoremap P "+p
+
 "选择单词 (select word)
 nnoremap <space> viw
+nnoremap Q :q<CR>
+nnoremap W :w<CR>
 set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim状态栏的显示信息
 set nocompatible " be iMproved, required
 filetype off " required
