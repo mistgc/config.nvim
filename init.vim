@@ -1,10 +1,3 @@
-"============================
-"*	File Name: init.vim
-"*	Created Date: 12/9/2021 4:27:11 PM
-"*	Last Modified Date:12/9/2021 8:00:17 PM
-"*	Author: mistgc
-"*	Email: georgecai0908@outlook.com
-"============================*/
 "=======================================
 "	           _     _             
 "	 _ __ ___ (_)___| |_ __ _  ___ 
@@ -27,15 +20,14 @@ let g:go_highlight_build_constraints = 1
 "disable warning:"vim-go: initialized gopls""
 let g:go_gopls_enabled = 0
 
-" ==============================================================
+"================================================================
 " Auto add title of file.
-" ==============================================================
-"
-autocmd BufNewFile *.cpp,*.cc,*.c,*.vim,*.sql exec ":call SetTitle()"
-autocmd BufWrite * exec ":call SetModifiedTime()"
+"================================================================
+" autocmd BufNewFile * exec ":call SetTitle()"
+" autocmd BufWrite * exec ":call SetModifiedTime()"
 func SetTitle()
 	let type = expand("%:e")		"Get type of file.
-	if type == 'cpp' || type == 'cc' || type == 'c' || type == 'sql'
+	if type == 'cpp' || type == 'cc' || type == 'c' || type == 'sql' || type == 'h' || type == 'hpp'
 		call setline(1, "/*============================")
 		call append(line("."), "*	File Name: ".expand("%"))
 		call append(line(".")+1, "*	Created Date: ".strftime("%c"))
@@ -56,7 +48,7 @@ func SetTitle()
 endfunc
 func SetModifiedTime()
 	let type = expand("%:e")		"Get type of file.
-	if type == 'cpp' || type == 'cc' || type == 'c' || type == 'sql'
+	if type == 'cpp' || type == 'cc' || type == 'c'
 		let modif_time = strftime("%c")
 		let line = '*	Last Modified Date:'.modif_time
 		call setline(4, line)
@@ -67,13 +59,7 @@ func SetModifiedTime()
 		call setline(4, line)
 	endif
 endfunc
-" ==============================================================
-
-"Nvim-go
-if exists('g:loaded_hello')
-    finish
-endif
-let g:loaded_hello = 1
+"================================================================
 
 function! s:Requirehello(host) abort
     " 'hello' is the binary created by compiling the program above.
@@ -90,6 +76,9 @@ call remote#host#RegisterPlugin('hello', '0', [
 " vim:ts=4:sw=4:et
 "
 
+"================================================================
+" Base configuration
+"================================================================
 set nocompatible "不使用兼容模式
 set nu "显示行号
 syntax on "语法高亮
@@ -107,15 +96,17 @@ set noswapfile
 if has('termguicolors')
   set termguicolors
 endif
-
-" The configuration options should be placed before `colorscheme edge`.
+" Configuration of Scheme 'gruvbox'
+"
+"let g:gruvbox_contrast_dark = 'hard'
+"autocmd vimenter * ++nested colorscheme gruvbox
+"
+" Configuration of Scheme 'edge'
 let g:edge_style = 'aura'
-let g:edge_enable_italic = 1
-let g:edge_disable_italic_comment = 1
 let g:airline_theme = 'edge'
 let g:lightline = {'colorscheme' : 'edge'}
-let g:edge_style = 'aura'
-colorscheme edge
+set bg=dark
+autocmd vimenter * ++nested colorscheme edge
 
 "set foldmethod = manual
 "set spell "拼写检查
@@ -125,13 +116,21 @@ syntax enable
 "NERDTREE_CONFIG
 "autocmd VimEnter * NERDTree | wincmd p
 "autocmd BufWinEnter * silent NERDTreeMirror
-" Exit Vim if NERDTree is the only window left.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-"     \ quit | endif
+""
+"" Start NERDTree when Vim is started without file arguments.
 "autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+""autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+""
+"" Open the existing NERDTree on each new tab.
+"autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+"
 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
 "    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+"
+""Exit Vim if NERDTree is the only window remaining in the only tab.
+"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+"     \ quit | endif
+"
 
 "set t_Co=256
 set expandtab "(是否在缩进和遇到 Tab 键时使用空格替代;使用 noexpandtab 取消设置)
@@ -161,41 +160,116 @@ set ignorecase "搜索时忽略大小写
 set cindent "使用C样式的缩进
 autocmd FileType make set noexpandtab "当文件类型是make的时候，
 set noexpandtab
+" set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim状态栏的显示信息
+set nocompatible " be iMproved, required
+filetype off " required
+"================================================================
 
-"常用按键设置
+"================================================================
+" Configuration of Dashboard
+"================================================================
+" TODO
+"================================================================
+
+"================================================================
+" 常用按键设置
+"================================================================
 nmap ,, :tabedit<CR>
 nnoremap <backspace> :noh<CR>
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <leader>fs :tabedit ~/AppData/Local/nvim/init.vim<CR>
-nnoremap <C-n> :NERDTree<CR>
+"nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 vnoremap Y "+y
-vnoremap P "+p
-
+nnoremap P "+p
 "选择单词 (select word)
 nnoremap <space> viw
-nnoremap Q :q<CR>
+nnoremap Q :q!<CR>
 nnoremap W :w<CR>
-set statusline=%F%m%r%h%w\ [%{&ff}\|%Y]\ [%04l,%04v\|%p%%*%L] "vim状态栏的显示信息
-set nocompatible " be iMproved, required
-filetype off " required
+nnoremap - @q
+"================================================================
+
+"================================================================
+" Configuration of FZF
+"================================================================
+" This is the default extra key bindings
+nnoremap <leader>rn :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - Popup window (center of the screen)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" - Popup window (center of the current window)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+
+" - Popup window (anchored to the bottom of the current window)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
+
+" - down / up / left / right
+let g:fzf_layout = { 'down': '50%' }
+
+" - Window using a Vim command
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+let g:fzf_layout = { 'window': '10new' }
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+"================================================================
+
+"================================================================
+" Plugin
+"================================================================
 call plug#begin()
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go',{'for': 'go'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'glepnir/dashboard-nvim'
-"Plug 'scrooloose/nerdtree'
+Plug 'sainnhe/edge'
+"Plug 'preservim/nerdtree',{'on': 'NERDTreeToggle'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'chemzqm/wxapp.vim'
-Plug 'sainnhe/edge'
+" Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'akinsho/bufferline.nvim'
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 call plug#end()
+"================================================================
