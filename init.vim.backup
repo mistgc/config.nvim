@@ -116,21 +116,21 @@ syntax enable
 "NERDTREE_CONFIG
 "autocmd VimEnter * NERDTree | wincmd p
 "autocmd BufWinEnter * silent NERDTreeMirror
-""
+"
 "" Start NERDTree when Vim is started without file arguments.
 "autocmd StdinReadPre * let s:std_in=1
-""autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 ""
 "" Open the existing NERDTree on each new tab.
 "autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 "
 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
 "    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-"
-""Exit Vim if NERDTree is the only window remaining in the only tab.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-"     \ quit | endif
-"
+
+"Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+     \ quit | endif
+
 
 "set t_Co=256
 set expandtab "(是否在缩进和遇到 Tab 键时使用空格替代;使用 noexpandtab 取消设置)
@@ -179,7 +179,7 @@ nnoremap <backspace> :noh<CR>
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <leader>fs :tabedit ~/AppData/Local/nvim/init.vim<CR>
+nnoremap <leader>fs :tabedit ~/.config/nvim/init.vim<CR>
 "nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
@@ -288,6 +288,15 @@ let g:mkdp_filetypes = ['markdown']
 "================================================================
 
 "================================================================
+" OmniSharp
+"================================================================
+let g:OmniSharp_server_use_mono = 1
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_highlight_type = 2
+let g:OmniSharp_selector_ui = 'ctrlp'
+"================================================================
+
+"================================================================
 " Configuration of FZF
 "================================================================
 " This is the default extra key bindings
@@ -355,7 +364,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'glepnir/dashboard-nvim'
 Plug 'sainnhe/edge'
-"Plug 'preservim/nerdtree',{'on': 'NERDTreeToggle'}
+Plug 'preservim/nerdtree',{'on': 'NERDTreeToggle'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
@@ -372,6 +381,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'godlygeek/tabular'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'plasticboy/vim-markdown'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'vim-syntastic/syntastic'
 
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 call plug#end()
