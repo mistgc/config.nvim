@@ -183,6 +183,7 @@ noremap j e
 noremap k n
 noremap l i
 
+noremap K N
 noremap N 5j
 noremap E 5k
 noremap L I
