@@ -1,1 +1,0 @@
--- local colors = require("galaxyline.themes.colors").doom-one

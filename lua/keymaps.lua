@@ -42,3 +42,16 @@ map('n', '<backspace>', ':noh<cr>', {})		-- cancel highlight that from search
 map('n', '<space>', 'viw', {})				-- select a word
 map('n', '-', '@q', {})						-- play the macro 'q'
 
+-- -- Telescope
+-- Find file
+map("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<CR>", {})
+-- Find word
+map("n", "<leader>fg", "<cmd>Telescope live_grep theme=dropdown<CR>", {})
+-- Find special sample
+map("n", "<leader>fb", "<cmd>Telescope buffers theme=dropdown<CR>", {})
+-- check help doc
+map("n", "<leader>fh", "<cmd>Telescope help_tags theme=dropdown<CR>", {})
+-- check recent files
+map("n", "<leader>fo", "<cmd>Telescope oldfiles theme=dropdown<CR>", {})
+-- find marks
+map("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", {})
