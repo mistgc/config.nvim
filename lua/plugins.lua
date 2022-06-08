@@ -38,6 +38,7 @@ return require('packer').startup(function()
 			require'alpha'.setup(require'alpha.themes.startify'.config)
 		end
 	}
+
 	-- Comment plugin
 	use {
 		'numToStr/Comment.nvim',
@@ -58,7 +59,6 @@ return require('packer').startup(function()
 		requires = { "kyazdani42/nvim-web-devicons", opt = true }
 	})
 
-	-- using packer.nvim
 	use {'akinsho/bufferline.nvim',
 		tag = "v2.*",
 		requires = 'kyazdani42/nvim-web-devicons',

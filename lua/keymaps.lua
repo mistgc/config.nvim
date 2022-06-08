@@ -25,8 +25,8 @@ map('', 'S', ':w<cr>', {})
 -- About buffers
 map('n', ',,', ':vsp<cr>', {})
 map('n', '<leader>[]', ':tabedit<cr>', {})
-map('n', '{', 'gT', {})
-map('n', '}', 'gt', {})
+map('n', '{', ':bp<cr>', {})
+map('n', '}', ':bn<cr>', {})
 map('n', 'H', '<c-w>h', {})
 map('n', 'I', '<c-w>l', {})
 
