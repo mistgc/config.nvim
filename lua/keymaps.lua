@@ -23,24 +23,29 @@ map('', 'Q', ':q<cr>', {})
 map('', 'S', ':w<cr>', {})
 
 -- About buffers
-map('n', ',,', ':vsp<cr>', {})
-map('n', '<leader>[]', ':tabedit<cr>', {})
-map('n', '{', ':bp<cr>', {})
-map('n', '}', ':bn<cr>', {})
+map('n', ',,', '<cmd>vsp<cr>', {})
+map('n', '<leader>[]', '<cmd>tabedit<cr>', {})
+map('n', '{', '<cmd>bp<cr>', {})
+map('n', '}', '<cmd>bn<cr>', {})
+map('n', 'tx', '<cmd>bd<cr>', {})
 map('n', 'H', '<c-w>h', {})
 map('n', 'I', '<c-w>l', {})
 
 -- Quickly edit the configuration
-map('n', '<leader>fs', ':tabedit ~/.config/nvim/lua/plugins.lua<cr>', {})
+map('n', '<leader>fs', '<cmd>tabedit ~/.config/nvim/lua/plugins.lua<cr>', {})
 
 -- Copy and Past from the system clipboard
 map('v', 'Y', '"+y', {})
 map('n', 'P', '"+p', {})
 
 -- Some functional configuration
-map('n', '<backspace>', ':noh<cr>', {})		-- cancel highlight that from search
+map('n', '<backspace>', '<cmd>noh<cr>', {})		-- cancel highlight that from search
 map('n', '<space>', 'viw', {})				-- select a word
 map('n', '-', '@q', {})						-- play the macro 'q'
+
+-- -- NvimTree
+-- Open NvimTree
+map("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", {});
 
 -- -- Telescope
 -- Find file
