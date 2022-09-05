@@ -42,7 +42,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 ```
 
-Then enter NeoVim and execute the following command:
+Then enter NeoVim and execute the following commands:
 ```bash
 :PackerSync
 :PackerCompile
