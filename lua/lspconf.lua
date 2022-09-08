@@ -91,7 +91,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'volar', 'pyright', 'html', 'gopls', 'taplo', 'tsserver', 'remark_ls', 'rust_analyzer', 'jdtls', 'clangd', 'cssls' }
+local servers = { 'volar', 'pyright', 'html', 'gopls', 'taplo', 'tsserver', 'rust_analyzer', 'jdtls', 'clangd', 'cssls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,
