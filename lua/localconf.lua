@@ -14,6 +14,9 @@ vim.o.swapfile = false
 -- Allow corsor to cross line boundaries.
 vim.o.whichwrap = vim.o.whichwrap..',<,>,h,l'
 
+-- Lua
+vim.cmd.colorscheme('tokyonight-moon')
+
 -- Markdown-Preview.nvim
 -- vim.g.mkdp_filetypes = { 'markdown' }
 -- vim.cmd('autocmd vimenter *.md exec ":MarkdownPreview"')
