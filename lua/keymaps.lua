@@ -28,8 +28,8 @@ map('n', '<leader>[]', '<cmd>tabedit<cr>', {})
 map('n', '{', '<cmd>bp<cr>', {})
 map('n', '}', '<cmd>bn<cr>', {})
 map('n', 'tx', '<cmd>bd<cr>', {})
-map('n', 'H', '<c-w>h', {})
-map('n', 'I', '<c-w>l', {})
+map('n', 'H', '0', {})
+map('n', 'I', '$', {})
 
 -- Quickly edit the configuration
 map('n', '<leader>fs', '<cmd>tabedit ~/.config/nvim/lua/plugins.lua<cr>', {})
