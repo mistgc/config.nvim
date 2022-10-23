@@ -18,6 +18,9 @@ map('', 'N', '5j', {})
 map('', 'E', '5k', {})
 map('', 'L', 'I', {})
 
+map('', 'H', '0', {})
+map('', 'I', '$', {})
+
 -- Shortcut for quiting and saving
 map('', 'Q', ':q<cr>', {})
 map('', 'S', ':w<cr>', {})
@@ -28,8 +31,6 @@ map('n', '<leader>[]', '<cmd>tabedit<cr>', {})
 map('n', '{', '<cmd>bp<cr>', {})
 map('n', '}', '<cmd>bn<cr>', {})
 map('n', 'tx', '<cmd>bd<cr>', {})
-map('n', 'H', '0', {})
-map('n', 'I', '$', {})
 
 -- Quickly edit the configuration
 map('n', '<leader>fs', '<cmd>tabedit ~/.config/nvim/lua/plugins.lua<cr>', {})
