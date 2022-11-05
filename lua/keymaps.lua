@@ -26,7 +26,7 @@ map('', 'Q', ':q<cr>', {})
 map('', 'S', ':w<cr>', {})
 
 -- About buffers
-map('n', ',,', '<cmd>vsp<cr>', {})
+map('n', ',,', '<cmd>sp term://${SHELL}<cr><c-w>x<c-w>w', {})
 map('n', '<leader>[]', '<cmd>tabedit<cr>', {})
 map('n', '{', '<cmd>bp<cr>', {})
 map('n', '}', '<cmd>bn<cr>', {})
@@ -47,6 +47,7 @@ map('n', '-', '@q', {})						-- play the macro 'q'
 -- -- NvimTree
 -- Open NvimTree
 map("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", {});
+map("n", "<leader>f", "<cmd>NvimTreeFocus<CR>", {});
 
 -- -- Telescope
 -- Find file
