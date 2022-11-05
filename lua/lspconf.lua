@@ -1,14 +1,3 @@
-require("nvim-lsp-installer").setup{
-    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-    ui = {
-        icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
-        }
-    }
-}
-
 local lspsaga = require 'lspsaga'
 lspsaga.setup { -- defaults ...
   debug = false,
@@ -88,17 +77,13 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local lspconfig = require('lspconfig')
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'volar', 'pyright', 'html', 'gopls', 'taplo', 'tsserver', 'rust_analyzer', 'jdtls', 'clangd', 'cssls' }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    on_attach = attach,
-    capabilities = capabilities,
-  }
-end
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+    function (server_name)
+        require("lspconfig")[server_name].setup {}
+    end,
+}
 
 -- luasnip setup
 local luasnip = require 'luasnip'

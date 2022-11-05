@@ -4,12 +4,19 @@ return require('packer').startup(function()
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 	-- Lsp config
+	-- use {
+	-- 	'williamboman/nvim-lsp-installer',
+	-- 	config = function()
+	-- 		require('conf.nvim-lsp-installer-conf')
+	-- 	end
+	-- }
 	use {
-		'williamboman/nvim-lsp-installer',
-		config = function()
-			require('conf.nvim-lsp-installer-conf')
-		end
-	}
+           'williamboman/mason.nvim',
+           config = function()
+            	require('conf.mason-conf')
+           end
+    	}
+    use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
