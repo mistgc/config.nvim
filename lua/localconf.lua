@@ -30,3 +30,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end
 })
+
+-- Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not auto-select, nvim-cmp plugin will handle this for us.
+vim.o.completeopt = "menuone,noinsert,noselect"
