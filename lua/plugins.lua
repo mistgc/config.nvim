@@ -5,11 +5,11 @@ return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 	-- Lsp config
 	use {
-           'williamboman/mason.nvim',
-           config = function()
-            	require('conf.mason-conf')
-           end
-    	}
+       'williamboman/mason.nvim',
+       config = function()
+            require('conf.mason-conf')
+       end
+    }
     use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-cmp'
@@ -19,6 +19,15 @@ return require('packer').startup(function()
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-nvim-lua'
+
+    -- Rust
+    use {
+        'simrat39/rust-tools.nvim',
+        config = function ()
+            require('conf.rust-tools-conf')
+        end
+    }
+
     -- Markdown Preview
 	use 'iamcco/markdown-preview.nvim'
 
