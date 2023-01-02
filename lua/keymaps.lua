@@ -1,5 +1,5 @@
 local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
+	local options = { noremap = true, silent = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
@@ -62,3 +62,7 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags theme=dropdown<CR>", {})
 map("n", "<leader>fo", "<cmd>Telescope oldfiles theme=dropdown<CR>", {})
 -- find marks
 map("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", {})
+
+-- -- Terminal
+map("n", "<C-t>", "<cmd>term<CR>", {})
+map("t", "<Esc>", "<C-\\><C-n>", {})
