@@ -107,7 +107,7 @@ return require('packer').startup(function()
     	},
     	tag = 'nightly', -- optional, updated every week. (see issue #1193)
 		config = function()
-			require('nvim-tree').setup{}
+			require('conf.nvimtree-conf')
 		end
 	}
 
