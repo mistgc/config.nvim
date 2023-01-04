@@ -15,7 +15,13 @@ return require('packer').startup(function()
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-	use 'L3MON4D3/LuaSnip' -- Snippets plugin
+	use 'rafamadriz/friendly-snippets' -- Snippets (vscode-like) collection for different languages
+	use {
+        'L3MON4D3/LuaSnip', -- Snippets plugin
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end
+    }
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-nvim-lua'
