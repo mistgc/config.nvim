@@ -1,7 +1,9 @@
 # NeoVim for Colemak
 
+![](assets/cover.png)
+
 ## Introduction
-The repository is about configuration of **NeoVim (v0.5.0+)** for **Colemak** user. And here is common keymaps:
+The repository is about configuration of **NeoVim (v0.8.0+)** for **Colemak** user. And here is common keymaps:
 
 |Qwerty|Colemak|
 |--|--|
@@ -21,11 +23,15 @@ The repository is about configuration of **NeoVim (v0.5.0+)** for **Colemak** us
 ## Features
 
 - LSP
-- Dashboard
-- File Search
-- Easy Comment
-- Directory Tree
-- Theme ([doom-one.nvim](https://github.com/NTBBloodbath/doom-one.nvim))
+- LSP Installer ([Mason](https://github.com/williamboman/mason.nvim))
+- Dashboard ([alpha](https://github.com/))
+- File Search ([telescope.nvim](https://github.com/nvim-telescope/telescope.nvim))
+- [Easy Comment](https://github.com/numToStr/Comment.nvim)
+- Directory Tree ([nvim-tree.nvim](https://github.com/kyazdani42/nvim-tree.lua))
+- [Dev Icons](https://github.com/kyazdani42/nvim-web-devicons)
+- Theme ([tokyonight.nvim](https://github.com/folke/tokyonight.nvim))
+- **[Rust Tools](https://github.com/simrat39/rust-tools.nvim) (if you don't need it, plz delete it manually.)**
+- [Markdown Preview](https://github.com/iamcco/markdown-preview.nvim)
 - Debugger Adapt Protocol (not configured yet...)
 
 ## Usage

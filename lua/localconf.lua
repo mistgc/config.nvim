@@ -12,7 +12,7 @@ vim.o.wildmenu = true
 vim.o.ignorecase = true
 vim.o.swapfile = false
 -- Allow corsor to cross line boundaries.
-vim.o.whichwrap = vim.o.whichwrap..',<,>,h,l'
+vim.o.whichwrap = vim.o.whichwrap .. ',<,>,h,l'
 
 -- Lua
 vim.cmd.colorscheme('tokyonight-moon')
@@ -23,7 +23,7 @@ vim.cmd.colorscheme('tokyonight-moon')
 
 -- vim.cmd([[ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]])
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = {"*"},
+    pattern = { "*" },
     callback = function()
         if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
             vim.api.nvim_exec("normal! g'\"", false)

@@ -1,57 +1,7 @@
-local lspsaga = require 'lspsaga'
-lspsaga.setup { -- defaults ...
-  debug = false,
-  use_saga_diagnostic_sign = true,
-  -- diagnostic sign
-  error_sign = "",
-  warn_sign = "",
-  hint_sign = "",
-  infor_sign = "",
-  diagnostic_header_icon = "   ",
-  -- code action title icon
-  code_action_icon = " ",
-  code_action_prompt = {
-    enable = true,
-    sign = true,
-    sign_priority = 40,
-    virtual_text = true,
-  },
-  finder_definition_icon = "  ",
-  finder_reference_icon = "  ",
-  max_preview_lines = 10,
-  finder_action_keys = {
-    open = "o",
-    vsplit = "s",
-    split = "i",
-    quit = "q",
-    scroll_down = "<C-f>",
-    scroll_up = "<C-b>",
-  },
-  code_action_keys = {
-    quit = "q",
-    exec = "<CR>",
-  },
-  rename_action_keys = {
-    quit = "<C-c>",
-    exec = "<CR>",
-  },
-  definition_preview_icon = "  ",
-  border_style = "single",
-  rename_prompt_prefix = "➤",
-  rename_output_qflist = {
-    enable = false,
-    auto_open_qflist = false,
-  },
-  server_filetype_map = {},
-  diagnostic_prefix_format = "%d. ",
-  diagnostic_message_format = "%m %c",
-  highlight_prefix = false,
-}
-
 local function attach(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-   -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
+    -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
     vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions theme=dropdown<CR>", bufopts)
     -- 列出光标下所有引用（代替内置 LSP 的窗口，telescope 插件让查看引用更方便）
     vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references theme=dropdown<CR>", bufopts)
@@ -66,11 +16,19 @@ local function attach(client, bufnr)
     -- 跳转到上一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
     vim.keymap.set("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
     -- 跳转到下一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
-    vim.keymap.set("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts) 
+    vim.keymap.set("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
     -- 悬浮窗口上翻页，由 Lspsaga 提供
     vim.keymap.set("n", "<C-p>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", bufopts)
     -- 悬浮窗口下翻页，由 Lspsaga 提供
     vim.keymap.set("n", "<C-n>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", bufopts)
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format()
+        end
+    })
 end
 
 -- Add additional capabilities supported by nvim-cmp
@@ -80,7 +38,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers {
-    function (server_name)
+    function(server_name)
         require("lspconfig")[server_name].setup {
             on_attach = attach,
             capabilities = capabilities
@@ -94,50 +52,48 @@ local luasnip = require 'luasnip'
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  }),
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-	{ name = 'buffer' },
-	{ name = 'path'},
-	{ name = 'nvim_lua'},
-  },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        },
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+    }),
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'buffer' },
+        { name = 'path' },
+        { name = 'nvim_lua' },
+    },
 }
 vim.diagnostic.config({
-	virtual_text = {
-		prefix = '●',
-	},
+    virtual_text = {
+        prefix = '●',
+    },
 })
-
-
