@@ -22,13 +22,17 @@ local function attach(client, bufnr)
     -- 悬浮窗口下翻页，由 Lspsaga 提供
     vim.keymap.set("n", "<C-n>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", bufopts)
 
-    vim.api.nvim_create_autocmd('BufWritePre', {
-        group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
-        buffer = bufnr,
-        callback = function()
-            vim.lsp.buf.format()
-        end
-    })
+    -- ** auto format when saving a file **
+    -- ** if need this, plz enable it mannually. **
+    -- ** (don't forget the 'conf/rust-tools-conf.lua) **
+
+    -- vim.api.nvim_create_autocmd('BufWritePre', {
+    --     group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
+    --     buffer = bufnr,
+    --     callback = function()
+    --         vim.lsp.buf.format()
+    --     end
+    -- })
 end
 
 -- Add additional capabilities supported by nvim-cmp
