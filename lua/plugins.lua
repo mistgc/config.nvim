@@ -122,7 +122,7 @@ return require('packer').startup(function()
             "sharkdp/fd" -- 文件查找
         },
         config = function()
-            require('telescope').setup {}
+            require('conf.telescope-conf')
         end
     }
 end)
