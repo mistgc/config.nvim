@@ -66,5 +66,5 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles theme=dropdown<CR>", {})
 map("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", {})
 
 -- -- Terminal
-map("n", "<C-t>", "<cmd>term<CR>", {})
+map("n", "<C-t>", "<cmd>FloatermToggle<CR>", {})
 map("t", "<Esc>", "<C-\\><C-n>", {})

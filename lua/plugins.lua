@@ -125,4 +125,6 @@ return require('packer').startup(function()
             require('conf.telescope-conf')
         end
     }
+
+    use 'voldikss/vim-floaterm'
 end)
