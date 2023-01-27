@@ -30,7 +30,7 @@ map('n', ',,', '<cmd>sp term://${SHELL}<cr><c-w>x<c-w>w', {})
 map('n', '<leader>[]', '<cmd>tabedit<cr>', {})
 map('n', '{', '<cmd>bp<cr>', {})
 map('n', '}', '<cmd>bn<cr>', {})
-map('n', 'tx', '<cmd>bd<cr>', {})
+map('n', 'tx', '<cmd>bd<cr><cmd>bp<cr>', {})
 
 -- Quickly edit the configuration
 map('n', '<leader>fs', '<cmd>tabedit ~/.config/nvim/<cr>', {})

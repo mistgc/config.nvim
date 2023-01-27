@@ -26,6 +26,13 @@ return require('packer').startup(function()
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lua'
 
+    use {
+        'j-hui/fidget.nvim',
+        config = function()
+            require('conf.fidget-conf')
+        end
+    }
+
     -- Rust
     use {
         'simrat39/rust-tools.nvim',
