@@ -27,14 +27,14 @@ local function on_attach(client, buffer)
     -- ** auto format when saving a file **
     -- ** if need this, plz enable it mannually. **
 
-    -- auto format when save a file
-    -- vim.api.nvim_create_autocmd('BufWritePre', {
-    --     group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
-    --     buffer = bufnr,
-    --     callback = function()
-    --         vim.lsp.buf.format()
-    --     end
-    -- })
+    -- auto forma when save a file
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format()
+        end
+    })
 end
 
 -- Configure LSP through rust-tools.nvim plugin.

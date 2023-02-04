@@ -26,13 +26,13 @@ local function attach(client, bufnr)
     -- ** if need this, plz enable it mannually. **
     -- ** (don't forget the 'conf/rust-tools-conf.lua) **
 
-    -- vim.api.nvim_create_autocmd('BufWritePre', {
-    --     group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
-    --     buffer = bufnr,
-    --     callback = function()
-    --         vim.lsp.buf.format()
-    --     end
-    -- })
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format()
+        end
+    })
 end
 
 -- Add additional capabilities supported by nvim-cmp
