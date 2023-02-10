@@ -76,7 +76,12 @@ return require('packer').startup(function()
         end
     }
 
-    use 'xiyaowong/nvim-cursorword'
+    use {
+        'yamatsum/nvim-cursorline',
+        config = function()
+            require('conf.cursorline-conf')
+        end
+    }
 
     use({
         "NTBBloodbath/galaxyline.nvim",
