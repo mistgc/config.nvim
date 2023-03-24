@@ -11,6 +11,7 @@ vim.o.expandtab = true
 vim.o.wildmenu = true
 vim.o.ignorecase = true
 vim.o.swapfile = false
+vim.o.wrap = false
 -- Allow corsor to cross line boundaries.
 vim.o.whichwrap = vim.o.whichwrap .. ',<,>,h,l'
 
