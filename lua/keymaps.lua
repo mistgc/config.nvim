@@ -41,10 +41,10 @@ map('n', 'P', '"+p', {})
 
 -- Some functional configuration
 map('n', '<backspace>', '<cmd>noh<cr>', {}) -- cancel highlight that from search
-map('n', '<space>', 'viw', {}) -- select a word
-map('n', '-', '@q', {}) -- play the macro 'q'
-map('n', '<c-a>', 'gg<s-v>G', {}) -- select all
-map('n', 'f', '<c-w>w', {}) -- change window
+map('n', '<space>', 'viw', {})              -- select a word
+map('n', '-', '@q', {})                     -- play the macro 'q'
+map('n', '<c-a>', 'gg<s-v>G', {})           -- select all
+map('n', 'f', '<c-w>w', {})                 -- change window
 map('n', '<leader>s', '<cmd>vsplit<cr><c-w>w', {})
 
 -- -- NvimTree
@@ -65,6 +65,11 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles theme=dropdown<CR>", {})
 -- find marks
 map("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", {})
 
--- -- Terminal
+-- Terminal
 map("n", "<C-t>", "<cmd>FloatermToggle<CR>", {})
 map("t", "<Esc>", "<C-\\><C-n>", {})
+
+-- Terminal
+map("n", "<C-t>", "<cmd>FloatermToggle<CR>", {})
+-- Diagnostic
+map("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", {})

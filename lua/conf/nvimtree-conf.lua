@@ -66,6 +66,10 @@ local function on_attach(bufnr)
     -- The dummy set before del is done for safety, in case a default mapping does not exist.
     --
     -- You might tidy things by removing these along with their default mapping.
+    vim.keymap.set('n', 'F', '', { buffer = bufnr })
+    vim.keymap.del('n', 'F', { buffer = bufnr })
+    vim.keymap.set('n', 'f', '', { buffer = bufnr })
+    vim.keymap.del('n', 'f', { buffer = bufnr })
     vim.keymap.set('n', 'O', '', { buffer = bufnr })
     vim.keymap.del('n', 'O', { buffer = bufnr })
     vim.keymap.set('n', '<2-RightMouse>', '', { buffer = bufnr })

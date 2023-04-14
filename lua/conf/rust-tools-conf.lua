@@ -27,7 +27,7 @@ local function on_attach(client, buffer)
     -- ** auto format when saving a file **
     -- ** if need this, plz enable it mannually. **
 
-    -- auto forma when save a file
+    -- auto format when save a file
     vim.api.nvim_create_autocmd('BufWritePre', {
         group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
         buffer = bufnr,
@@ -52,7 +52,6 @@ local opts = {
             other_hints_prefix = "",
         },
     },
-
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
@@ -62,7 +61,7 @@ local opts = {
         settings = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
+                ["rust-analyzer"] = {
                 -- enable clippy on save
                 checkOnSave = {
                     command = "clippy",
