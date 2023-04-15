@@ -15,7 +15,6 @@ opt.swapfile = false
 opt.wrap = false
 opt.spell = true
 opt.spelllang = { 'en', 'cjk' }
-opt.clipboard = "unnamedplus"
 opt.showmode = false
 opt.list = true
 opt.listchars = { tab = '▸ ', trail = '·', precedes = '←', extends = '→' }

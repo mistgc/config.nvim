@@ -1,5 +1,5 @@
 require('keymaps.mod')
-require('lazy.mod')
 require('options.mod')
+require('lazy.mod')
 require('autocmds.mod')
 require('lsp.mod')
