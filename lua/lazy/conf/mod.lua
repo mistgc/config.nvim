@@ -1,0 +1,1 @@
+require('lazy.conf.lualine')
