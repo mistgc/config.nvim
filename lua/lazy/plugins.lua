@@ -63,5 +63,6 @@ return {
         require('lspsaga').setup()
     end
   },
-  { 'voldikss/vim-floaterm' }
+  { 'voldikss/vim-floaterm' },
+  { 'iamcco/markdown-preview.nvim' }
 }
