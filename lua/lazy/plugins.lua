@@ -50,7 +50,13 @@ return {
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-nvim-lua' },
-      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      {
+        'L3MON4D3/LuaSnip',
+        dependencies = {
+          'rafamadriz/friendly-snippets'
+        }
+      },
     }
   },
   { 'j-hui/fidget.nvim' },

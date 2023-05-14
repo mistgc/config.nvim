@@ -15,7 +15,9 @@ require('mason-lspconfig').setup_handlers({
 })
 
 local luasnip = require('luasnip')
+local loader = require('luasnip.loaders.from_vscode')
 local cmp  = require('cmp')
+loader.lazy_load()
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -27,6 +29,7 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'nvim_lua' },
+    { name = 'luasnip' }
   },
   mapping = cmp.mapping.preset.insert({
    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
