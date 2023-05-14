@@ -43,7 +43,7 @@ map("n", "<c-e>", "<cmd>NvimTreeToggle<CR>", {});
 
 -- -- Telescope
 -- Find file
-map("n", "<c-f>", "<cmd>Telescope find_files theme=dropdown<CR>", {})
+map("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<CR>", {})
 -- Find word
 map("n", "<leader>fg", "<cmd>Telescope live_grep theme=dropdown<CR>", {})
 -- Find special sample
