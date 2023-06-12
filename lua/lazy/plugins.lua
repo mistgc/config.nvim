@@ -72,5 +72,6 @@ return {
   },
   { 'voldikss/vim-floaterm' },
   { 'iamcco/markdown-preview.nvim' },
-  { 'lukas-reineke/indent-blankline.nvim' }
+  { 'lukas-reineke/indent-blankline.nvim' },
+  { 'lewis6991/gitsigns.nvim' }
 }
