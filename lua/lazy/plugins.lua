@@ -71,5 +71,6 @@ return {
     end
   },
   { 'voldikss/vim-floaterm' },
-  { 'iamcco/markdown-preview.nvim' }
+  { 'iamcco/markdown-preview.nvim' },
+  { 'lukas-reineke/indent-blankline.nvim' }
 }
