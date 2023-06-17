@@ -1,2 +1,2 @@
-require('keymaps.local')
-require('keymaps.barbar')
+require("keymaps.local")
+require("keymaps.barbar")

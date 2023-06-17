@@ -1,2 +1,2 @@
-require('lazy.bootstrap')
-require('lazy.conf.mod')
+require("lazy.bootstrap")
+require("lazy.conf.mod")

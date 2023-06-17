@@ -1,3 +1,3 @@
-require('options.opts')
-require('options.nvim-tree')
-require('options.barbar')
+require("options.opts")
+require("options.nvim-tree")
+require("options.barbar")

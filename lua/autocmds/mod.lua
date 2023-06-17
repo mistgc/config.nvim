@@ -1,1 +1,1 @@
-require('autocmds.local')
+require("autocmds.local")
