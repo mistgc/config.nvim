@@ -74,4 +74,12 @@ return {
   { "iamcco/markdown-preview.nvim", ft = { "markdown" }, event = "VeryLazy" },
   { "lukas-reineke/indent-blankline.nvim" },
   { "lewis6991/gitsigns.nvim" },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+  },
 }
