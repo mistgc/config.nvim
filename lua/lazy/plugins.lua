@@ -59,7 +59,6 @@ return {
       },
     },
   },
-  { "j-hui/fidget.nvim" },
   { "numToStr/Comment.nvim" },
   { "nvim-tree/nvim-tree.lua" },
   { "romgrk/barbar.nvim" },
@@ -81,5 +80,12 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
   },
 }
