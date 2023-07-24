@@ -88,4 +88,5 @@ return {
       "MunifTanjim/nui.nvim",
     },
   },
+  { "zaiic/pinmd.nvim" },
 }
