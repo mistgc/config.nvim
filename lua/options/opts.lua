@@ -19,3 +19,5 @@ opt.spelllang = { "en", "cjk" }
 opt.showmode = false
 opt.list = true
 opt.listchars = { tab = "▸ ", trail = "·", precedes = "←", extends = "→" }
+opt.autoread = true
+opt.exrc = true
