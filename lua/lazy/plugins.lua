@@ -74,14 +74,6 @@ return {
   { "lukas-reineke/indent-blankline.nvim" },
   { "lewis6991/gitsigns.nvim" },
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-  },
-  {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
@@ -97,5 +89,10 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "nvim-telescope/telescope-dap.nvim",
     },
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
+    config = true,
   },
 }

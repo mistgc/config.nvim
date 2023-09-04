@@ -1,6 +1,5 @@
 require("lualine").setup()
 require("Comment").setup()
-require("which-key").setup()
 require("lazy.conf.treesitter")
 require("lazy.conf.mason-null-ls")
 require("lazy.conf.gitsigns")
