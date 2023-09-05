@@ -1,7 +1,38 @@
 require("dapui").setup()
 require("nvim-dap-virtual-text").setup()
+local utils = require("utils.plugin")
 
 local dap, dapui, telescope, widgets = require("dap"), require("dapui"), require("telescope"), require("dap.ui.widgets")
+
+dap.adapters.codelldb = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    command = vim.fn.stdpath("data") .. "/mason/packages/codelldb/codelldb",
+    args = { "--port", "${port}" },
+  },
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      local exepath = utils.os_capture('sh -c "$SHELL -ic cmxp"')
+      if utils.file_exists(exepath) then
+        return exepath
+      else
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      end
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
+}
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
 
 -- use nvim-dap events to open and close the dapui windows automatically
 dap.listeners.after.event_initialized["dapui_config"] = function()
