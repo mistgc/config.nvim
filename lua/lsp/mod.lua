@@ -1,4 +1,11 @@
-require("mason").setup()
+require("mason").setup({
+  ui = {
+    -- change keymaps for Colemak layout
+    keymaps = {
+      install_package = "l",
+    },
+  },
+})
 require("mason-lspconfig").setup()
 
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()

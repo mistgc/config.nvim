@@ -88,6 +88,7 @@ return {
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
       "nvim-telescope/telescope-dap.nvim",
+      "nvim-neotest/nvim-nio",
     },
   },
   {
@@ -121,5 +122,43 @@ return {
       })
     end,
   },
-  { "simrat39/rust-tools.nvim" }
+  { "simrat39/rust-tools.nvim" },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+    },
+  },
 }

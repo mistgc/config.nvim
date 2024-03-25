@@ -22,8 +22,8 @@ map("", "H", "0", {})
 map("", "I", "$", {})
 
 -- Shortcut for quiting and saving
-map("", "Q", ":q<cr>", {})
-map("", "S", ":w<cr>", {})
+map("", "<c-q>", ":q<cr>", {})
+map("", "<c-s>", ":w<cr>", {})
 
 -- Copy and Past from the system clipboard
 map("v", "Y", '"+y', {})
@@ -56,8 +56,5 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles theme=dropdown<CR>", {})
 map("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", {})
 
 -- Terminal
-map("n", "<C-t>", "<cmd>FloatermToggle<CR>", {})
+map("n", "<c-f>", "<cmd>FloatermToggle<CR>", {})
 map("t", "<Esc>", "<C-\\><C-n>", {})
-
--- Terminal
-map("n", "<C-t>", "<cmd>FloatermToggle<CR>", {})
