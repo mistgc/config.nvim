@@ -34,12 +34,22 @@ map("n", "<backspace>", "<cmd>noh<cr>", {}) -- cancel highlight that from search
 map("n", "<space>", "viw", {}) -- select a word
 map("n", "-", "@q", {}) -- play the macro 'q'
 map("n", "<c-a>", "gg<s-v>G", {}) -- select all
-map("n", "f", "<c-w>w", {}) -- change window
-map("n", "<leader>s", "<cmd>vsplit<cr><c-w>w", {})
+map("n", "<leader>v", "<cmd>vsplit<cr><c-w>w", {})
+map("n", "<leader>s", "<cmd>split<cr><c-w>w", {})
+
+-- Cursor Motion between Windows
+-- Move to left
+map("n", "<c-h>", "<c-w>h")
+-- Move to down
+map("n", "<c-n>", "<c-w>j")
+-- Move to up
+map("n", "<c-e>", "<c-w>k")
+-- Move to right
+map("n", "<C-i>", "<c-w>l")
 
 -- -- NvimTree
 -- Open NvimTree
-map("n", "<c-e>", "<cmd>NvimTreeToggle<CR>", {})
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {})
 
 -- -- Telescope
 -- Find file
@@ -56,5 +66,5 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles theme=dropdown<CR>", {})
 map("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", {})
 
 -- Terminal
-map("n", "<c-f>", "<cmd>FloatermToggle<CR>", {})
+map("n", "<c-t>", "<cmd>ToggleTerm<CR>", {})
 map("t", "<Esc>", "<C-\\><C-n>", {})

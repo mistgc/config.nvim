@@ -69,7 +69,7 @@ return {
       require("lspsaga").setup()
     end,
   },
-  { "voldikss/vim-floaterm" },
+  { "akinsho/toggleterm.nvim" },
   { "iamcco/markdown-preview.nvim", ft = { "markdown" }, event = "VeryLazy" },
   { "lukas-reineke/indent-blankline.nvim" },
   { "lewis6991/gitsigns.nvim" },
