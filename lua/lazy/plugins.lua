@@ -80,7 +80,7 @@ return {
       "MunifTanjim/nui.nvim",
     },
   },
-  { "zaiic/pinmd.nvim" },
+  { "mistgc/pinmd.nvim" },
   {
     "mfussenegger/nvim-dap",
     event = "VeryLazy",

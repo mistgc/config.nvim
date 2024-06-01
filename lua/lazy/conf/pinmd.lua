@@ -1,8 +1,10 @@
 local opts = {
   files = {
+    link_format = "relative_path_in_vault",
     location_for_new_attachments = "specified_folder_in_vault",
-    attachment_folder_path = "_attachments",
+    attachment_folder_path = "_attachments/",
   },
 }
 
-require("pinmd").setup(opts)
+local pinmd = require("pinmd")
+pinmd.setup(opts)
