@@ -17,30 +17,30 @@ end
 
 local function config()
   local nvim_tree = require("nvim-tree")
-  nvim_tree.setup {
+  nvim_tree.setup({
     on_attach = attach,
     disable_netrw = true,
     filesystem_watchers = {
-        enable = true,
+      enable = true,
     },
     renderer = {
       root_folder_label = false,
       highlight_git = false,
       highlight_opened_files = "none",
       indent_markers = {
-          enable = false,
+        enable = false,
       },
     },
-  }
+  })
 end
 
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = {
-    "nvim-tree/nvim-web-devicons"
+    "nvim-tree/nvim-web-devicons",
   },
   config = config,
   keys = {
-      { "<leader>e", "<cmd>NvimTreeToggle<cr>", mode = "n", desc = "Toggle NvimTree file explorer." }
-  }
+    { "<leader>e", "<cmd>NvimTreeToggle<cr>", mode = "n", desc = "Toggle NvimTree file explorer." },
+  },
 }

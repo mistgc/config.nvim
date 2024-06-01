@@ -25,7 +25,7 @@ local function normalize_module_name(filename)
 end
 
 for item in plugin_iter do
-  local plugin = require("plugins."..normalize_module_name(item))
+  local plugin = require("plugins." .. normalize_module_name(item))
   table.insert(plugins, plugin)
 end
 

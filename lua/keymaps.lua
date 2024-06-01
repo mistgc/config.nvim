@@ -21,8 +21,8 @@ map("", "H", "0")
 map("", "I", "$")
 
 -- Copy and Pash from the System Clipboard
-map("v", "Y", "\"+y")
-map("n", "P", "\"+p")
+map("v", "Y", '"+y')
+map("n", "P", '"+p')
 
 -- Misc Functional Key Mappings
 map("n", "<space>", "viw")

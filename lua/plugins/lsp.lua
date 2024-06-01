@@ -1,5 +1,5 @@
 local function lsp_attach(client, bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr}
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
   vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", bufopts)
   vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", bufopts)
@@ -23,29 +23,29 @@ local function config()
   local luasnip = require("luasnip")
   local snippet_loader = require("luasnip.loaders.from_vscode")
   local cmp = require("cmp")
-  mason.setup{
+  mason.setup({
     ui = {
       keymaps = {
         install_package = "l",
       },
     },
-  }
+  })
   mason_lspconfig.setup()
-  mason_lspconfig.setup_handlers {
+  mason_lspconfig.setup_handlers({
     function(server_name)
-      lspconfig[server_name].setup {
+      lspconfig[server_name].setup({
         on_attach = lsp_attach,
         capabilities = lsp_capabilities,
-      }
-    end
-  }
+      })
+    end,
+  })
 
   snippet_loader.lazy_load()
-  cmp.setup{
+  cmp.setup({
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)
-      end
+      end,
     },
     sources = {
       { name = "nvim_lsp" },
@@ -54,7 +54,7 @@ local function config()
       { name = "nvim_lua" },
       { name = "luasnip" },
     },
-    mapping = cmp.mapping.preset.insert {
+    mapping = cmp.mapping.preset.insert({
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping.complete(),
@@ -80,14 +80,14 @@ local function config()
           fallback()
         end
       end, { "i", "s" }),
-    }
-  }
+    }),
+  })
 
-  vim.diagnostic.config {
+  vim.diagnostic.config({
     virtual_text = {
       prefix = "●",
     },
-  }
+  })
 end
 
 return {
@@ -102,10 +102,10 @@ return {
         event = "LspAttach",
         config = function()
           require("lspsaga").setup()
-        end
-      }
+        end,
+      },
     },
-    config = config
+    config = config,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -122,5 +122,5 @@ return {
         },
       },
     },
-  }
+  },
 }
