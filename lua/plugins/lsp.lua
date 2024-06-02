@@ -12,7 +12,6 @@ local function lsp_attach(client, bufnr)
   vim.keymap.set("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
   vim.keymap.set("n", "<C-p>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", bufopts)
   vim.keymap.set("n", "<C-n>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", bufopts)
-  vim.keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format({ timeout_ms = 2000 })<CR>", bufopts)
 end
 
 local function config()
