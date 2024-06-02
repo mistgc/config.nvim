@@ -40,6 +40,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = config,
+  lazy = false,
   keys = {
     { "<leader>e", "<cmd>NvimTreeToggle<cr>", mode = "n", desc = "Toggle NvimTree file explorer." },
   },
