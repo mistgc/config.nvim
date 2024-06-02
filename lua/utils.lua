@@ -28,4 +28,20 @@ function M.file_exists(name)
   end
 end
 
+function M.log_info(msg, title)
+  vim.notify(msg, vim.log.levels.INFO, { title = title })
+end
+
+function M.log_warn(msg, title)
+  vim.notify(msg, vim.log.levels.WARN, { title = title })
+end
+
+function M.log_error(msg, title)
+  vim.notify(msg, vim.log.levels.ERROR, { title = title })
+end
+
+function M.log_debug(msg, title)
+  vim.notify(msg, vim.log.levels.DEBUG, { title = title })
+end
+
 return M
