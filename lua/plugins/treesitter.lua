@@ -1,7 +1,7 @@
 local function config()
   local treesitte_conf = require("nvim-treesitter.configs")
   local opts = {
-    ensure_installed = { "lua", "c", "cpp", "rust", "python", "cmake", "json", "make", "csv" },
+    ensure_installed = { "lua" },
     sync_install = false,
     auto_install = false,
     highlight = {
