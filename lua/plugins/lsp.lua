@@ -97,11 +97,15 @@ return {
       "neovim/nvim-lspconfig",
       "williamboman/mason-lspconfig.nvim",
       {
-        "tami5/lspsaga.nvim",
+        "nvimdev/lspsaga.nvim",
         event = "LspAttach",
         config = function()
           require("lspsaga").setup()
         end,
+        dependencies = {
+          "nvim-treesitter/nvim-treesitter",
+          "nvim-tree/nvim-web-devicons",
+        },
       },
     },
     config = config,
