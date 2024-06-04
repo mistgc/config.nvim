@@ -28,7 +28,6 @@ map("n", "P", '"+p')
 map("n", "<space>", "viw")
 map("n", "<backspace>", "<cmd>noh<cr>")
 map("n", "<C-a>", "gg<s-v>G")
-map("n", "-", "@q")
 
 -- Cursor Motion between Windows
 map("n", "<c-h>", "<c-w>h")
