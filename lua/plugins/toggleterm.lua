@@ -3,7 +3,7 @@ local function config()
   local sys_name = tostring(vim.loop.os_uname().sysname)
   local sh_exec = nil
 
-  if sys_name:lower():find("windows", 1) > 0 then
+  if sys_name:lower():find("windows", 1) ~= nil then
     sh_exec = "pwsh"
   else
     sh_exec = os.getenv("SHELL")
