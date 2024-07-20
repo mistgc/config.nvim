@@ -20,6 +20,12 @@ map("", "L", "I")
 map("", "H", "0")
 map("", "I", "$")
 
+-- Cursor Motion between Windows for Colemak
+map("n", "<c-w>h", "<c-w>h")
+map("n", "<c-w>n", "<c-w>j")
+map("n", "<c-w>e", "<c-w>k")
+map("n", "<C-w>i", "<c-w>l")
+
 -- Copy and Pash from the System Clipboard
 map("v", "Y", '"+y')
 map("n", "P", '"+p')
@@ -28,9 +34,3 @@ map("n", "P", '"+p')
 map("n", "<space>", "viw")
 map("n", "<backspace>", "<cmd>noh<cr>")
 map("n", "<C-a>", "gg<s-v>G")
-
--- Cursor Motion between Windows
-map("n", "<c-h>", "<c-w>h")
-map("n", "<c-n>", "<c-w>j")
-map("n", "<c-e>", "<c-w>k")
-map("n", "<C-i>", "<c-w>l")
