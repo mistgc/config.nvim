@@ -1,6 +1,7 @@
 local function config()
   vim.g.rustaceanvim = {
     server = {
+      auto_attach = require("utils").lsp_on_attach,
       cmd = function()
         local mason_registry = require("mason-registry")
         if mason_registry.is_installed("rust-analyzer") then

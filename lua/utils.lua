@@ -44,4 +44,22 @@ function M.log_debug(msg, title)
   vim.notify(msg, vim.log.levels.DEBUG, { title = title })
 end
 
+function M.lsp_on_attach(client, bufnr)
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+  vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", bufopts)
+  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", bufopts)
+  vim.keymap.set("n", "go", "<cmd>Telescope diagnostics<cr>", bufopts)
+  vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<cr>", bufopts)
+  vim.keymap.set("n", "<leader>cn", "<cmd>Lspsaga rename<cr>", bufopts)
+  vim.keymap.set("n", "gh", "<cmd>Lspsaga hover_doc<cr>", bufopts)
+  vim.keymap.set("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
+  vim.keymap.set("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
+  vim.keymap.set("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
+  vim.keymap.set("n", "<C-p>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", bufopts)
+  vim.keymap.set("n", "<C-n>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", bufopts)
+
+  return true
+end
+
 return M
