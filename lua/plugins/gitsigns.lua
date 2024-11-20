@@ -25,7 +25,7 @@ local function attach(bufnr)
   vim.keymap.set("n", "<leader>td", gs.toggle_deleted, bufopts)
 
   -- Text object
-  vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", bufopts)
+  vim.keymap.set({ "o", "x" }, "lh", ":<C-U>Gitsigns select_hunk<CR>", bufopts)
 end
 
 return {
