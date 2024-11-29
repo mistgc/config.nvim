@@ -17,11 +17,6 @@ local function config()
   mason_lspconfig.setup()
   mason_lspconfig.setup_handlers({
     function(server_name)
-      -- prevent conflict `rustaceanvim` and `mason_lspconfig`
-      if server_name == "rust_analyzer" then
-        return
-      end
-
       lspconfig[server_name].setup({
         on_attach = utils.lsp_on_attach,
         capabilities = lsp_capabilities,
