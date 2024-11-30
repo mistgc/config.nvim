@@ -2,10 +2,7 @@ local function config()
   local lspconfig = require("lspconfig")
   local mason = require("mason")
   local mason_lspconfig = require("mason-lspconfig")
-  local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-  local luasnip = require("luasnip")
-  local snippet_loader = require("luasnip.loaders.from_vscode")
-  local cmp = require("cmp")
+  local blink_cmp = require("blink.cmp").get_lsp_capabilities()
   local utils = require("utils")
   mason.setup({
     ui = {
@@ -19,52 +16,9 @@ local function config()
     function(server_name)
       lspconfig[server_name].setup({
         on_attach = utils.lsp_on_attach,
-        capabilities = lsp_capabilities,
+        capabilities = blink_cmp,
       })
     end,
-  })
-
-  snippet_loader.lazy_load()
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
-    },
-    sources = {
-      { name = "nvim_lsp" },
-      { name = "buffer" },
-      { name = "path" },
-      { name = "nvim_lua" },
-      { name = "luasnip" },
-    },
-    mapping = cmp.mapping.preset.insert({
-      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete(),
-      ["<CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }),
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expand_or_locally_jumpable(1) then
-          luasnip.jump(1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-    }),
   })
 
   vim.diagnostic.config({
@@ -94,23 +48,63 @@ return {
           "nvim-tree/nvim-web-devicons",
         },
       },
-    },
-    config = config,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "saadparwaiz1/cmp_luasnip" },
       {
-        "L3MON4D3/LuaSnip",
+        "saghen/blink.cmp",
+        lazy = false,
         dependencies = {
           "rafamadriz/friendly-snippets",
+          "L3MON4D3/LuaSnip",
+          "saadparwaiz1/cmp_luasnip",
+          { "saghen/blink.compat", version = "*", opts = { impersonate_nvim_cmp = true } },
         },
+        version = "v0.*",
+        opts = {
+          keymap = { preset = "super-tab" },
+          snippets = {
+            expand = function(snippet)
+              require("luasnip").lsp_expand(snippet)
+            end,
+            active = function(filter)
+              if filter and filter.direction then
+                return require("luasnip").jumpable(filter.direction)
+              end
+              return require("luasnip").in_snippet()
+            end,
+            jump = function(direction)
+              require("luasnip").jump(direction)
+            end,
+          },
+          appearance = {
+            use_nvim_cmp_as_default = true,
+            nerd_font_variant = "mono",
+          },
+          sources = {
+            completion = {
+              enabled_providers = {
+                "lsp",
+                "path",
+                "snippets",
+                "buffer",
+              },
+            },
+            providers = {
+              luasnip = {
+                name = "luasnip",
+                module = "blink.compat.source",
+
+                score_offset = -3,
+
+                opts = {
+                  use_show_condition = false,
+                  show_autosnippets = true,
+                },
+              },
+            },
+          },
+        },
+        opts_extend = { "sources.completion.enabled_providers" },
       },
     },
+    config = config,
   },
 }
