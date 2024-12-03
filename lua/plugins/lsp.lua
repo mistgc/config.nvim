@@ -53,27 +53,10 @@ return {
         lazy = false,
         dependencies = {
           "rafamadriz/friendly-snippets",
-          "L3MON4D3/LuaSnip",
-          "saadparwaiz1/cmp_luasnip",
-          { "saghen/blink.compat", version = "*", opts = { impersonate_nvim_cmp = true } },
         },
         version = "v0.*",
         opts = {
           keymap = { preset = "super-tab" },
-          snippets = {
-            expand = function(snippet)
-              require("luasnip").lsp_expand(snippet)
-            end,
-            active = function(filter)
-              if filter and filter.direction then
-                return require("luasnip").jumpable(filter.direction)
-              end
-              return require("luasnip").in_snippet()
-            end,
-            jump = function(direction)
-              require("luasnip").jump(direction)
-            end,
-          },
           appearance = {
             use_nvim_cmp_as_default = true,
             nerd_font_variant = "mono",
@@ -85,19 +68,6 @@ return {
                 "path",
                 "snippets",
                 "buffer",
-              },
-            },
-            providers = {
-              luasnip = {
-                name = "luasnip",
-                module = "blink.compat.source",
-
-                score_offset = -3,
-
-                opts = {
-                  use_show_condition = false,
-                  show_autosnippets = true,
-                },
               },
             },
           },
