@@ -62,4 +62,24 @@ function M.lsp_on_attach(client, bufnr)
   return true
 end
 
+function M.get_gui_name()
+  if vim.g.neovide then
+    return "neovide"
+  elseif vim.g.goneovim then
+    return "goneovim"
+  elseif vim.g.vscode then
+    return "vscode"
+  else
+    return "terminal"
+  end
+end
+
+function M.is_vscode()
+  if vim.g.vscode then
+    return true
+  else
+    return false
+  end
+end
+
 return M
