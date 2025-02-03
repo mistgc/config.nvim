@@ -42,6 +42,9 @@ return {
             use_absolute_path = true,
           },
         },
+        keys = {
+          { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+        },
       },
       {
         -- Make sure to set this up properly if you have lazy=true
