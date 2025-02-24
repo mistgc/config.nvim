@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -29,4 +31,6 @@ for item in plugin_iter do
   table.insert(plugins, plugin)
 end
 
-require("lazy").setup(plugins)
+if utils.get_gui_name() ~= "vscode" then
+  require("lazy").setup(plugins)
+end
