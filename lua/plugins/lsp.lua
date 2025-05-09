@@ -1,7 +1,7 @@
 local function config()
   local lspconfig = require("lspconfig")
   local mason = require("mason")
-  local mason_lspconfig = require("mason-lspconfig")
+  local mslspconf = require("mason-lspconfig")
   local blink_cmp = require("blink.cmp").get_lsp_capabilities()
   local utils = require("utils")
   mason.setup({
@@ -11,8 +11,8 @@ local function config()
       },
     },
   })
-  mason_lspconfig.setup()
-  mason_lspconfig.setup_handlers({
+  mslspconf.setup()
+  mslspconf.setup_handlers({
     function(server_name)
       lspconfig[server_name].setup({
         on_attach = utils.lsp_on_attach,
@@ -34,7 +34,10 @@ return {
     build = ":MasonUpdate",
     dependencies = {
       "neovim/nvim-lspconfig",
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        version = "^1.0.0",
+      },
       {
         "nvimdev/lspsaga.nvim",
         event = "LspAttach",
@@ -45,7 +48,7 @@ return {
         },
         dependencies = {
           "nvim-treesitter/nvim-treesitter",
-          "nvim-tree/nvim-web-devicons",
+          { "echasnovski/mini.icons", opts = {} },
         },
       },
       {

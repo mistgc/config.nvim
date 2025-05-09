@@ -1,5 +1,6 @@
 return {
   "stevearc/oil.nvim",
+  lazy = false,
   opts = {
     columns = {
       "icon",
@@ -11,5 +12,5 @@ return {
   keys = {
     { "-", "<cmd>Oil<cr>", mode = "n", desc = "Open parent directory." },
   },
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { { "echasnovski/mini.icons", opts = {} } },
 }
