@@ -3,6 +3,7 @@ vim.lsp.enable("clangd")
 vim.lsp.enable("pyright")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("cmake")
+vim.lsp.enable("texlab")
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
