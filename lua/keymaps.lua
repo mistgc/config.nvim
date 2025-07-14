@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
@@ -35,3 +37,4 @@ map("n", "<space>", "viw")
 map("n", "<backspace>", "<cmd>noh<cr>")
 map("n", "<C-a>", "gg<s-v>G")
 map("n", "+", "@q")
+map("n", "<leader>ts", utils.toggle_spellcheck, { desc = "Toggle spellcheck" })

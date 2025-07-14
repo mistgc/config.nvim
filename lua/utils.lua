@@ -64,4 +64,23 @@ function M.is_vscode()
   end
 end
 
+function M.toggle_spellcheck()
+  if vim.opt.spell then
+    vim.opt.spell = false
+  else
+    vim.opt.spell = true
+  end
+end
+
+---Extend table A
+---@param ta table: Table A
+---@param tb table: Table B
+---@return table
+function M.table_extend(ta, tb)
+  for k, v in tb do
+    ta[k] = v
+  end
+  return ta
+end
+
 return M
