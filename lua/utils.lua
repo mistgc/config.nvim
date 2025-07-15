@@ -77,10 +77,16 @@ end
 ---@param tb table: Table B
 ---@return table
 function M.table_extend(ta, tb)
-  for k, v in tb do
-    ta[k] = v
+  local tc = {}
+
+  for k, v in pairs(ta) do
+    tc[k] = v
   end
-  return ta
+  for k, v in pairs(tb) do
+    tc[k] = v
+  end
+
+  return tc
 end
 
 return M

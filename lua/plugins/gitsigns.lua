@@ -5,10 +5,10 @@ local function attach(bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
   vim.keymap.set("n", "<leader>hs", gs.stage_hunk, utils.table_extend(bufopts, { desc = "Git: Stage hunk." }))
-  vim.keymap.set("n", "<leader>hr", gs.reset_hunk, utils.table_exend(bufopts, { desc = "Git: Reset hunk" }))
+  vim.keymap.set("n", "<leader>hr", gs.reset_hunk, utils.table_extend(bufopts, { desc = "Git: Reset hunk" }))
   vim.keymap.set("v", "<leader>hs", function()
     gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-  end, utils.table_exend(bufopts, { desc = "Git: Stage hunk" }))
+  end, utils.table_extend(bufopts, { desc = "Git: Stage hunk" }))
   vim.keymap.set("v", "<leader>hr", function()
     gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
   end, utils.table_extend(bufopts, { desc = "Git: Reset hunk" }))
