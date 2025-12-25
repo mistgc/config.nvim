@@ -1,75 +1,104 @@
 local M = {}
 
 function M.is_available(plugin)
-  local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
-  return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
+    local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+    return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
 end
 
 function M.os_capture(cmd, raw)
-  local f = assert(io.popen(cmd, "r"))
-  local s = assert(f:read("*a"))
-  f:close()
-  if raw then
+    local f = assert(io.popen(cmd, "r"))
+    local s = assert(f:read("*a"))
+    f:close()
+    if raw then
+        return s
+    end
+    s = string.gsub(s, "^%s+", "")
+    s = string.gsub(s, "%s+$", "")
+    s = string.gsub(s, "[\n\r]+", " ")
     return s
-  end
-  s = string.gsub(s, "^%s+", "")
-  s = string.gsub(s, "%s+$", "")
-  s = string.gsub(s, "[\n\r]+", " ")
-  return s
 end
 
 function M.file_exists(name)
-  local f = io.open(name, "r")
-  if f ~= nil then
-    io.close(f)
-    return true
-  else
-    return false
-  end
+    local f = io.open(name, "r")
+    if f ~= nil then
+        io.close(f)
+        return true
+    else
+        return false
+    end
+end
+
+function M.get_shell_name()
+    local sh_name = os.getenv("SHELL")
+    if sh_name ~= nil then
+        return sh_name
+    end
+
+    local ok, _, code = os.execute("fish --version > /dev/null 2>&1")
+    if ok and code == 0 then
+        sh_name = "fish"
+        return sh_name
+    end
+
+    ok, _, code = os.execute("zsh --version > /dev/null 2>&1")
+    if ok and code == 0 then
+        sh_name = "zsh"
+        return sh_name
+    end
+
+    ok, _, code = os.execute("bash --version > /dev/null 2>&1")
+    if ok and code == 0 then
+        sh_name = "bash"
+        return sh_name
+    end
+
+    M.log_warn('Because the SHELL is nil, the "toggleterm.nvim" will use the defualt shell.', "ToggleTerm: ")
+
+    return nil
 end
 
 function M.log_info(msg, title)
-  vim.notify(msg, vim.log.levels.INFO, { title = title })
+    vim.notify(msg, vim.log.levels.INFO, { title = title })
 end
 
 function M.log_warn(msg, title)
-  vim.notify(msg, vim.log.levels.WARN, { title = title })
+    vim.notify(msg, vim.log.levels.WARN, { title = title })
 end
 
 function M.log_error(msg, title)
-  vim.notify(msg, vim.log.levels.ERROR, { title = title })
+    vim.notify(msg, vim.log.levels.ERROR, { title = title })
 end
 
 function M.log_debug(msg, title)
-  vim.notify(msg, vim.log.levels.DEBUG, { title = title })
+    vim.notify(msg, vim.log.levels.DEBUG, { title = title })
 end
 
 function M.get_gui_name()
-  if vim.g.neovide then
-    return "neovide"
-  elseif vim.g.goneovim then
-    return "goneovim"
-  elseif vim.g.vscode then
-    return "vscode"
-  else
-    return "terminal"
-  end
+    if vim.g.neovide then
+        return "neovide"
+    elseif vim.g.goneovim then
+        return "goneovim"
+    elseif vim.g.vscode then
+        return "vscode"
+    else
+        return "terminal"
+    end
 end
 
 function M.is_vscode()
-  if vim.g.vscode then
-    return true
-  else
-    return false
-  end
+    if vim.g.vscode then
+        return true
+    else
+        return false
+    end
 end
 
 function M.toggle_spellcheck()
-  if vim.opt.spell then
-    vim.opt.spell = false
-  else
-    vim.opt.spell = true
-  end
+    if vim.opt.spell then
+        vim.opt.spell = false
+    else
+        vim.opt.spell = true
+    end
 end
 
 ---Extend table A
@@ -77,16 +106,16 @@ end
 ---@param tb table: Table B
 ---@return table
 function M.table_extend(ta, tb)
-  local tc = {}
+    local tc = {}
 
-  for k, v in pairs(ta) do
-    tc[k] = v
-  end
-  for k, v in pairs(tb) do
-    tc[k] = v
-  end
+    for k, v in pairs(ta) do
+        tc[k] = v
+    end
+    for k, v in pairs(tb) do
+        tc[k] = v
+    end
 
-  return tc
+    return tc
 end
 
 return M

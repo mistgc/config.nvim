@@ -6,11 +6,7 @@ local function config()
   if sys_name:lower():find("windows", 1) ~= nil then
     sh_exec = "pwsh"
   else
-    sh_exec = os.getenv("SHELL")
-    if sh_exec == nil then
-      local log_warn = require("utils").log_warn
-      log_warn('Because the SHELL is nil, the "toggleterm.nvim" will use the defualt shell.', "ToggleTerm: ")
-    end
+    sh_exec = require("utils").get_shell_name()
   end
 
   toggleterm.setup({
