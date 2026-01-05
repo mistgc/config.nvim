@@ -1,1 +1,4 @@
 lazy-lock.json
+
+# for develop plugins
+/lua/plugins/dev.lua
