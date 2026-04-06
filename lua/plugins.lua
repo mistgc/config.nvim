@@ -1,4 +1,4 @@
-vim.pack.add { 
+vim.pack.add({
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/ellisonleao/gruvbox.nvim',
   'https://github.com/stevearc/oil.nvim',
@@ -16,61 +16,61 @@ vim.pack.add {
     src = 'https://github.com/saghen/blink.cmp',
     version = vim.version.range('1.*'),
   },
-}
+})
 
 require('fidget').setup()
 
-require('gruvbox').setup{ contrast = 'hard' }
+require('gruvbox').setup({ contrast = 'hard' })
 vim.cmd.colorscheme('gruvbox')
 
-require("bufferline").setup {
+require('bufferline').setup({
   options = {
     show_buffer_icons = true,
     show_buffer_close_icons = false,
     show_close_icons = false,
-    separator_style = "thin",
-    diagnostics = "nvim_lsp",
+    separator_style = 'thin',
+    diagnostics = 'nvim_lsp',
     always_show_bufferline = false,
-  }
-}
+  },
+})
 
-require('mason').setup {
+require('mason').setup({
   ui = {
     keymaps = {
       install_package = 'l',
-	}
-  }
-}
+    },
+  },
+})
 
 require('mason-lspconfig').setup()
 
-require('oil').setup{
+require('oil').setup({
   columns = {
     'icon',
     'permissions',
     'size',
     'mtime',
-  }
-}
+  },
+})
 
 require('mini.icons').setup()
 
-require('lualine').setup {
+require('lualine').setup({
   sections = {
     lualine_c = {
       {
         'filename',
         path = 1,
-      }
-    }
-  }
-}
+      },
+    },
+  },
+})
 
-require('blink.cmp').setup {
+require('blink.cmp').setup({
   fuzzy = {
     implementation = 'prefer_rust_with_warning',
   },
-  keymap = { preset = 'super-tab'},
+  keymap = { preset = 'super-tab' },
   appearance = {
     use_nvim_cmp_as_default = true,
     nerd_font_variant = 'mono',
@@ -81,12 +81,12 @@ require('blink.cmp').setup {
       'path',
       'snippets',
       'buffer',
-    }
-  }
-}
-
-require('conform').setup {
-  formatters_by_ft = {
-    python = { "black" },
+    },
   },
-}
+})
+
+require('conform').setup({
+  formatters_by_ft = {
+    python = { 'black' },
+  },
+})

@@ -10,4 +10,6 @@ vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, { desc = 'Telesco
 -- =====================================================
 -- Comform
 -- =====================================================
-vim.keymap.set('', '<leader>cf', function() require('conform').format({ async = true, lsp_fallback = true}) end, { desc = 'Format buffer.' })
+vim.keymap.set('', '<leader>cf', function()
+  require('conform').format({ async = true, lsp_fallback = true })
+end, { desc = 'Format buffer.' })
