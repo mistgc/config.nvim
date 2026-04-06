@@ -9,12 +9,16 @@ vim.pack.add {
   'https://github.com/williamboman/mason.nvim',
   'https://github.com/nvim-lualine/lualine.nvim',
   'https://github.com/mason-org/mason-lspconfig.nvim',
+  'https://github.com/j-hui/fidget.nvim',
+  'https://github.com/stevearc/conform.nvim',
 
   {
     src = 'https://github.com/saghen/blink.cmp',
     version = vim.version.range('1.*'),
   },
 }
+
+require('fidget').setup()
 
 require('gruvbox').setup{ contrast = 'hard' }
 vim.cmd.colorscheme('gruvbox')
@@ -79,4 +83,10 @@ require('blink.cmp').setup {
       'buffer',
     }
   }
+}
+
+require('conform').setup {
+  formatters_by_ft = {
+    python = { "black" },
+  },
 }
