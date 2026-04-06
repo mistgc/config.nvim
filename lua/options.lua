@@ -1,0 +1,23 @@
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.swapfile = false
+vim.opt.confirm = true
+vim.opt.signcolumn = 'yes:1'
+vim.opt.exrc = true
+vim.opt.tabstop = 4
+vim.opt.grepprg = 'rg --vimgrep --no-messages --smart-case'
+vim.opt.background = 'dark'
+vim.opt.mouse = 'a'
+vim.opt.shiftwidth = 4
+vim.opt.smartindent = true
+vim.opt.termguicolors = true
+vim.opt.autoread = true
+vim.opt.spell = true
+vim.opt.spelllang = { 'en', 'cjk' }
+vim.opt.showmode = false
+vim.opt.wrap = false
+vim.opt.ignorecase = true
+vim.opt.sidescrolloff = 8
+vim.opt.expandtab = true
+vim.opt.wildmenu = true
+vim.opt.listchars = { tab = '▸ ', trail = '·', precedes = '←', extends = '→' }

@@ -1,0 +1,27 @@
+vim.keymap.set('', 'n', 'j', { noremap = true, silent = true })
+vim.keymap.set('', 'e', 'k', { noremap = true, silent = true })
+vim.keymap.set('', 'i', 'l', { noremap = true, silent = true })
+vim.keymap.set('', 'j', 'e', { noremap = true, silent = true })
+vim.keymap.set('', 'k', 'n', { noremap = true, silent = true })
+vim.keymap.set('', 'l', 'i', { noremap = true, silent = true })
+
+vim.keymap.set('', 'K', 'N', { noremap = true, silent = true })
+vim.keymap.set('', 'L', 'I', { noremap = true, silent = true })
+vim.keymap.set('', 'H', '0', { noremap = true, silent = true })
+vim.keymap.set('', 'I', '$', { noremap = true, silent = true })
+vim.keymap.set('', 'N', '5j', { noremap = true, silent = true })
+vim.keymap.set('', 'E', '5k', { noremap = true, silent = true })
+
+vim.keymap.set('v', 'Y', '"+y', { noremap = true, silent = true })
+vim.keymap.set('n', 'P', '"+p', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<c-w>h', '<c-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-w>n', '<c-w>j', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-w>e', '<c-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-w>i', '<c-w>l', { noremap = true, silent = true })
+
+vim.keymap.set('n', '+', '@q', { noremap = true, silent = true })
+vim.keymap.set('n', '<space>', 'viw', { noremap = true, silent = true })
+vim.keymap.set('n', '<backspace>', '<cmd>noh<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-a>', 'gg<s-v>G', { noremap = true, silent = true })
+vim.keymap.set('n', '-', '<cmd>Oil<cr>', { noremap = true, silent = true })
