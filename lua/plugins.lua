@@ -11,6 +11,9 @@ vim.pack.add({
   'https://github.com/mason-org/mason-lspconfig.nvim',
   'https://github.com/j-hui/fidget.nvim',
   'https://github.com/stevearc/conform.nvim',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+  'https://github.com/lewis6991/gitsigns.nvim',
+  'https://github.com/folke/trouble.nvim',
 
   {
     src = 'https://github.com/saghen/blink.cmp',
@@ -90,3 +93,69 @@ require('conform').setup({
     python = { 'black' },
   },
 })
+
+require('nvim-treesitter.config').setup({
+  ensure_installed = { 'lua' },
+  sync_install = false,
+  auto_install = false,
+  highlight = {
+    enable = true,
+    disable = function(lang, buf)
+      local max_filesize = 500 * 1024 -- 500 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
+    end,
+    additional_vim_regex_highlighting = false,
+  },
+})
+
+require('gitsigns').setup({
+  on_attach = function(bufnr)
+    local utils = require('utils')
+    local gs = package.loaded.gitsigns
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', '<leader>hs', gs.stage_hunk, utils.table_extend(bufopts, { desc = 'Git: Stage hunk.' }))
+    vim.keymap.set('n', '<leader>hr', gs.reset_hunk, utils.table_extend(bufopts, { desc = 'Git: Reset hunk' }))
+    vim.keymap.set('v', '<leader>hs', function()
+      gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end, utils.table_extend(bufopts, { desc = 'Git: Stage hunk' }))
+    vim.keymap.set('v', '<leader>hr', function()
+      gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end, utils.table_extend(bufopts, { desc = 'Git: Reset hunk' }))
+    vim.keymap.set('n', '<leader>hS', gs.stage_buffer, utils.table_extend(bufopts, { desc = 'Git: Stage buffer' }))
+    vim.keymap.set(
+      'n',
+      '<leader>hu',
+      gs.undo_stage_hunk,
+      utils.table_extend(bufopts, { desc = 'Git: Undo stage hunk' })
+    )
+    vim.keymap.set('n', '<leader>hR', gs.reset_buffer, utils.table_extend(bufopts, { desc = 'Git: Reset buffer' }))
+    vim.keymap.set('n', '<leader>hp', gs.preview_hunk, utils.table_extend(bufopts, { desc = 'Git: Preview hunk' }))
+    vim.keymap.set('n', '<leader>hb', function()
+      gs.blame_line({ full = true })
+    end, utils.table_extend(bufopts, { desc = 'Git: Toggle line blame' }))
+    vim.keymap.set(
+      'n',
+      '<leader>tb',
+      gs.toggle_current_line_blame,
+      utils.table_extend(bufopts, { desc = 'Git: Toggle current line blame' })
+    )
+    vim.keymap.set('n', '<leader>hd', gs.diffthis, utils.table_extend(bufopts, { desc = 'Git: Diff this' }))
+    vim.keymap.set('n', '<leader>hD', function()
+      gs.diffthis('~')
+    end, utils.table_extend(bufopts, { desc = 'Git: Diff this with high-lighting' }))
+    vim.keymap.set('n', '<leader>td', gs.toggle_deleted, utils.table_extend(bufopts, { desc = 'Git: Toggle deleted' }))
+
+    -- Text object
+    vim.keymap.set(
+      { 'o', 'x' },
+      'lh',
+      ':<C-U>Gitsigns select_hunk<CR>',
+      utils.table_extend(bufopts, { desc = 'Git: Select hunk' })
+    )
+  end,
+})
+
+require('trouble').setup()
