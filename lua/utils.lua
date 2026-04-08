@@ -15,14 +15,41 @@ function M.fmt_md_table()
 
   -- Get the selected lines
   local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
-  local text = table.concat(lines, '\n')
 
-  -- Format using shell command
-  local cmd = 'tr -s " " | column -t -s "|" -o "|"'
-  local formatted = vim.fn.system(cmd, text)
+  -- Parse table rows
+  local rows = {}
+  local col_widths = {}
+  for _, line in ipairs(lines) do
+    local cells = {}
+    -- Split by | and trim whitespace
+    for cell in line:gmatch('[^|]+') do
+      cell = cell:match('^%s*(.-)%s*$') or ''
+      table.insert(cells, cell)
+    end
+    table.insert(rows, cells)
+    -- Track max width per column
+    for i, cell in ipairs(cells) do
+      col_widths[i] = math.max(col_widths[i] or 0, vim.fn.strdisplaywidth(cell))
+    end
+  end
+
+  -- Format each row
+  local formatted_lines = {}
+  for _, cells in ipairs(rows) do
+    local formatted_cells = {}
+    for i, cell in ipairs(cells) do
+      local width = col_widths[i] or 1
+      -- Right-align separator rows, left-align others
+      if cell:match('^%-+$') then
+        table.insert(formatted_cells, string.rep('-', width))
+      else
+        table.insert(formatted_cells, cell .. string.rep(' ', width - vim.fn.strdisplaywidth(cell)))
+      end
+    end
+    table.insert(formatted_lines, '| ' .. table.concat(formatted_cells, ' | ') .. ' |')
+  end
 
   -- Replace the selection with formatted output
-  local formatted_lines = vim.split(formatted, '\n', { trimempty = true })
   vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, formatted_lines)
 end
 
