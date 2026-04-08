@@ -5,6 +5,27 @@ function M.is_available(plugin)
   return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
 end
 
+function M.fmt_md_table()
+  -- Get the visual selection range
+  local start_line = vim.fn.line('v')
+  local end_line = vim.fn.line('.')
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+
+  -- Get the selected lines
+  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+  local text = table.concat(lines, '\n')
+
+  -- Format using shell command
+  local cmd = 'tr -s " " | column -t -s "|" -o "|"'
+  local formatted = vim.fn.system(cmd, text)
+
+  -- Replace the selection with formatted output
+  local formatted_lines = vim.split(formatted, '\n', { trimempty = true })
+  vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, formatted_lines)
+end
+
 function M.os_capture(cmd, raw)
   local f = assert(io.popen(cmd, 'r'))
   local s = assert(f:read('*a'))
