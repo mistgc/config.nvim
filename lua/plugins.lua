@@ -11,10 +11,13 @@ vim.pack.add({
   'https://github.com/mason-org/mason-lspconfig.nvim',
   'https://github.com/j-hui/fidget.nvim',
   'https://github.com/stevearc/conform.nvim',
-  'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/folke/trouble.nvim',
 
+  {
+    src = 'https://github.com/neovim-treesitter/nvim-treesitter',
+    version = 'main',
+  },
   {
     src = 'https://github.com/saghen/blink.cmp',
     version = vim.version.range('1.*'),
@@ -96,6 +99,7 @@ require('conform').setup({
 
 require('nvim-treesitter.config').setup({
   ensure_installed = { 'lua' },
+  install_dir = vim.fn.stdpath('data') .. '/site',
   sync_install = false,
   auto_install = false,
   highlight = {
