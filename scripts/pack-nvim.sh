@@ -18,28 +18,28 @@ ARCHIVE_MARKER='__ARCHIVE_DATA__'
 
 wget "$NVIM_DOWNLOAD_URL"              -O $TMP_NVIM_BIN_TARBALL_PATH             >> /dev/null 2>&1 &
 tar -czf $TMP_NVIM_CONFIG_TARBALL_PATH -C $NVIM_CONFIG_DIR --exclude='.git' .    >> /dev/null 2>&1 &
-tar -czf $TMP_NVIM_DATA_TARBALL_PATH   -C $NVIM_DATA_DIR              \
-    --exclude='.git'                                                  \
-    site/queries/cpp                                                  \
-    site/queries/rust                                                 \
-    site/queries/python                                               \
-                                                                      \
-    site/parser/cpp.so                                                \
-    site/parser/rust.so                                               \
-    site/parser/python.so                                             \
-                                                                      \
-    site/parser-info/cpp.lua                                          \
-    site/parser-info/rust.lua                                         \
-    site/parser-info/python.lua                                       \
-                                                                      \
-    --exclude='site/parser/'                                          \
-    --exclude='site/parser-info/'                                     \
-    --exclude='site/queries/'                                         \
-    --exclude='site/registry'                                         \
-                                                                      \
-    site/pack/core/opt/blink.cmp/target/release/libblink_cmp_fuzzy.so \
-    --exclude='site/pack/core/opt/blink.cmp/target'                   \
-    site >> /dev/null 2>&1 &
+tar -czf $TMP_NVIM_DATA_TARBALL_PATH   -C $NVIM_DATA_DIR                \
+    --exclude='.git'                                                    \
+    'site/queries/cpp'                                                  \
+    'site/queries/rust'                                                 \
+    'site/queries/python'                                               \
+                                                                        \
+    'site/parser/cpp.so'                                                \
+    'site/parser/rust.so'                                               \
+    'site/parser/python.so'                                             \
+                                                                        \
+    'site/parser-info/cpp.lua'                                          \
+    'site/parser-info/rust.lua'                                         \
+    'site/parser-info/python.lua'                                       \
+                                                                        \
+    --exclude='site/parser/'                                            \
+    --exclude='site/parser-info/'                                       \
+    --exclude='site/queries/'                                           \
+    --exclude='site/registry'                                           \
+                                                                        \
+    'site/pack/core/opt/blink.cmp/target/release/libblink_cmp_fuzzy.so' \
+    --exclude='site/pack/core/opt/blink.cmp/target'                     \
+    'site' >> /dev/null 2>&1 &
 wait
 
 tar -cf $TMP_PACKED_NVIM_TARBALL_PATH  -C $TMP 'nvim-bin.tar.gz' 'nvim-config.tar.gz' 'nvim-data.tar.gz' >> /dev/null 2>&1
