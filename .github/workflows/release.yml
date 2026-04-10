@@ -35,7 +35,15 @@ jobs:
       - name: Install plugins and parsers
         run: |
           nvim --headless -c 'quit' || true
-          nvim --headless -c 'TSInstallSync cpp rust python' -c 'quit' || true
+          nvim --headless -c 'TSInstall cpp rust python' -c 'quit' || true
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Compile blink.cmp
+        run: |
+          cd ~/.local/share/nvim/site/pack/core/opt/blink.cmp
+          cargo build --release
 
       - name: Build packed-nvim
         env:
