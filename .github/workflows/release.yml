@@ -1,0 +1,64 @@
+name: Release packed-nvim
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0). Leave empty to use the tag or generate one.'
+        required: false
+        default: ''
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+
+      - name: Install plugins
+        run: |
+          nvim --headless -c 'quit' || true
+          # Allow Lazy to download parsers
+          nvim --headless -c 'TSInstallSync cpp rust python' -c 'quit' || true
+
+      - name: Build packed-nvim
+        env:
+          OUTPUT_FILE_PATH: ./packed-nvim.run
+        run: |
+          chmod +x scripts/pack-nvim.sh
+          ./scripts/pack-nvim.sh
+
+      - name: Determine version
+        id: version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          elif [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+          else
+            VERSION="v$(date +%Y.%m.%d)-$(git rev-parse --short HEAD)"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          files: |
+            packed-nvim.run
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
