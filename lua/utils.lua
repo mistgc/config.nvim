@@ -166,4 +166,8 @@ function M.table_extend(ta, tb)
   return tc
 end
 
+function M.autocmd(event, opts)
+  return vim.api.nvim_create_autocmd(event, opts)
+end
+
 return M
