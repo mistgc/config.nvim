@@ -97,23 +97,11 @@ require('conform').setup({
   },
 })
 
-require('nvim-treesitter.config').setup({
-  ensure_installed = { 'lua' },
+require('nvim-treesitter').setup({
   install_dir = vim.fn.stdpath('data') .. '/site',
-  sync_install = false,
-  auto_install = false,
-  highlight = {
-    enable = true,
-    disable = function(lang, buf)
-      local max_filesize = 500 * 1024 -- 500 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-    additional_vim_regex_highlighting = false,
-  },
 })
+
+require('nvim-treesitter').install({ 'c', 'rust', 'cpp', 'python' })
 
 require('gitsigns').setup({
   on_attach = function(bufnr)
