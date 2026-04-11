@@ -17,7 +17,7 @@ autocmd('FileType', {
   callback = function()
     local max_file_size = 512 * 1024 -- 512 KB
     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
-    if ok and stats and stats.size > max_file_size then
+    if ok and stats and stats.size < max_file_size then
       vim.treesitter.start() -- highlighting
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- indentation
     end
