@@ -32,18 +32,17 @@ jobs:
           neovim: true
           version: stable
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-
       - name: Install tree-sitter-cli
-        run: npm install -g tree-sitter-cli
+        run: |
+          curl -LO https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz
+          gunzip tree-sitter-linux-x64.gz
+          chmod +x tree-sitter-linux-x64
+          sudo mv tree-sitter-linux-x64 /usr/local/bin/tree-sitter
 
       - name: Install plugins and parsers
         run: |
           nvim --headless -c 'quit'
-          nvim --headless -c 'TSInstall cpp rust python' -c 'quit'
+          nvim --headless -c 'lua require("nvim-treesitter").install({ "cpp", "rust", "python" }):wait()' -c 'quit'
           ls ~/.local/share/nvim/site/parser/
 
       - name: Setup Rust toolchain
