@@ -32,10 +32,19 @@ jobs:
           neovim: true
           version: stable
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install tree-sitter-cli
+        run: npm install -g tree-sitter-cli
+
       - name: Install plugins and parsers
         run: |
           nvim --headless -c 'quit' || true
           nvim --headless -c 'TSInstall cpp rust python' -c 'quit' || true
+          ls ~/.local/share/nvim/site/parser/ || true
 
       - name: Setup Rust toolchain
         uses: dtolnay/rust-toolchain@stable
