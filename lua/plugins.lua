@@ -101,7 +101,7 @@ require('nvim-treesitter').setup({
   install_dir = vim.fn.stdpath('data') .. '/site',
 })
 
-require('nvim-treesitter').install({ 'c', 'rust', 'cpp', 'python' })
+require('nvim-treesitter').install({ 'rust', 'cpp', 'python' })
 
 require('gitsigns').setup({
   on_attach = function(bufnr)
