@@ -13,6 +13,7 @@ vim.pack.add({
   'https://github.com/stevearc/conform.nvim',
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/folke/trouble.nvim',
+  'https://github.com/folke/which-key.nvim',
 
   {
     src = 'https://github.com/neovim-treesitter/nvim-treesitter',
@@ -151,3 +152,8 @@ require('gitsigns').setup({
 })
 
 require('trouble').setup()
+
+require('which-key').setup({
+  preset = 'modern',
+  delay = 500,
+})

@@ -20,6 +20,13 @@ vim.keymap.set('n', '<c-w>n', '<c-w>j', { noremap = true, silent = true })
 vim.keymap.set('n', '<c-w>e', '<c-w>k', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-w>i', '<c-w>l', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<M-h>', '<c-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-n>', '<c-w>j', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-e>', '<c-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-i>', '<c-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-w>', '<c-w>w', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-x>', '<c-w>x', { noremap = true, silent = true })
+
 vim.keymap.set('n', '+', '@q', { noremap = true, silent = true })
 vim.keymap.set('n', '<space>', 'viw', { noremap = true, silent = true })
 vim.keymap.set('n', '<backspace>', '<cmd>noh<cr>', { noremap = true, silent = true })

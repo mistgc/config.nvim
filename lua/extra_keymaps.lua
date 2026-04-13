@@ -33,3 +33,10 @@ vim.keymap.set(
 )
 vim.keymap.set('', '<leader>xL', '<cmd>Trouble loclist toggle<cr>', { desc = 'Location List (Trouble)' })
 vim.keymap.set('', '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', { desc = 'Quickfix List (Trouble)' })
+
+-- =====================================================
+-- Which-key
+-- =====================================================
+vim.keymap.set('', '<leader>?', function()
+  require('which-key').show({ global = false })
+end, { desc = 'Buffer local keymaps (whick-key)' })
