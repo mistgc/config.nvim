@@ -42,7 +42,7 @@ jobs:
       - name: Install plugins and parsers
         run: |
           nvim --headless -c 'quit'
-          nvim --headless -c 'lua require("nvim-treesitter").install({ "cpp", "rust", "python" }):wait()' -c 'quit'
+          nvim --headless -c 'lua require("nvim-treesitter").install({ "cpp", "rust", "python", "toml", "json", "yaml" }):wait()' -c 'quit'
           ls ~/.local/share/nvim/site/parser/
 
       - name: Setup Rust toolchain
