@@ -4,6 +4,10 @@ set -euo pipefail
 
 OUTPUT_FILE_PATH=${OUTPUT_FILE_PATH:-'./packed-nvim.run'}
 
+if [ -f "$OUTPUT_FILE_PATH" ]; then
+    rm "$OUTPUT_FILE_PATH"
+fi
+
 TMP=$(mktemp -d)
 TMP_NVIM_BIN_TARBALL_PATH="$TMP/nvim-bin.tar.gz"
 TMP_NVIM_CONFIG_TARBALL_PATH="$TMP/nvim-config.tar.gz"
@@ -23,14 +27,23 @@ tar -czf $TMP_NVIM_DATA_TARBALL_PATH   -C $NVIM_DATA_DIR                \
     'site/queries/cpp'                                                  \
     'site/queries/rust'                                                 \
     'site/queries/python'                                               \
+    'site/queries/toml'                                                 \
+    'site/queries/json'                                                 \
+    'site/queries/yaml'                                                 \
                                                                         \
     'site/parser/cpp.so'                                                \
     'site/parser/rust.so'                                               \
     'site/parser/python.so'                                             \
+    'site/parser/toml.so'                                               \
+    'site/parser/json.so'                                               \
+    'site/parser/yaml.so'                                               \
                                                                         \
     'site/parser-info/cpp.lua'                                          \
     'site/parser-info/rust.lua'                                         \
     'site/parser-info/python.lua'                                       \
+    'site/parser-info/toml.lua'                                         \
+    'site/parser-info/json.lua'                                         \
+    'site/parser-info/yaml.lua'                                         \
                                                                         \
     --exclude='site/parser/'                                            \
     --exclude='site/parser-info/'                                       \
