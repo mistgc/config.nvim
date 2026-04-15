@@ -17,6 +17,7 @@ vim.opt.spelllang = { 'en', 'cjk' }
 vim.opt.showmode = false
 vim.opt.wrap = false
 vim.opt.ignorecase = true
+vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8
 vim.opt.expandtab = true
 vim.opt.wildmenu = true

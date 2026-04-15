@@ -1,9 +1,15 @@
 -- Explicitly declare the activation of these lsp's
 -- in order to use them in packed-nvim.
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('clangd')
-vim.lsp.enable('pyright')
-vim.lsp.enable('rust_analyzer')
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      diagnostics = { globals = { 'vim' } },
+      telemetry = { enable = false },
+    },
+  },
+})
+
+vim.lsp.enable({ 'lua_ls', 'clangd', 'pyright', 'rust_analyzer' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
