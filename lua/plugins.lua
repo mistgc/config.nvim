@@ -15,7 +15,7 @@ vim.pack.add({
   'https://github.com/folke/trouble.nvim',
   'https://github.com/folke/which-key.nvim',
   'https://github.com/rafamadriz/friendly-snippets',
-
+  'https://github.com/neovim-treesitter/treesitter-parser-registry',
   {
     src = 'https://github.com/neovim-treesitter/nvim-treesitter',
     version = 'main',
