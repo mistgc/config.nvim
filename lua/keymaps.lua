@@ -1,9 +1,9 @@
 vim.keymap.set('', 'n', 'j', { noremap = true, silent = true })
 vim.keymap.set('', 'e', 'k', { noremap = true, silent = true })
-vim.keymap.set('', 'i', 'l', { noremap = true, silent = true })
+vim.keymap.set('', 'i', 'l', { noremap = true, silent = true, nowait = true })
 vim.keymap.set('', 'j', 'e', { noremap = true, silent = true })
 vim.keymap.set('', 'k', 'n', { noremap = true, silent = true })
-vim.keymap.set('', 'l', 'i', { noremap = true, silent = true })
+vim.keymap.set('', 'l', 'i', { noremap = true, silent = true, nowait = true })
 
 vim.keymap.set('', 'K', 'N', { noremap = true, silent = true })
 vim.keymap.set('', 'L', 'I', { noremap = true, silent = true })
