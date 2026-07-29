@@ -33,6 +33,8 @@ vim.keymap.set('n', '<backspace>', '<cmd>noh<cr>', { noremap = true, silent = tr
 vim.keymap.set('n', '<C-a>', 'gg<s-v>G', { noremap = true, silent = true })
 vim.keymap.set('n', '-', '<cmd>Oil<cr>', { noremap = true, silent = true })
 
+vim.keymap.set('t', '<ESC>', '<c-\\><c-n>', { noremap = true, silent = true, desc = 'exit terminal' })
+
 vim.keymap.set('v', '<leader>ft', function()
   require('utils').fmt_md_table()
 end, { noremap = true, silent = true, desc = 'Format table in markdown file' })
