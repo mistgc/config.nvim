@@ -19,7 +19,9 @@ autocmd('FileType', {
     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
     if ok and stats and stats.size < max_file_size then
       vim.treesitter.start() -- highlighting
-      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- indentation
+      -- NOTE: do NOT set indentexpr here. The nvim-treesitter indent module is
+      -- not maintained/reliable, and a non-empty indentexpr overrides the
+      -- built-in 'cindent' (enabled by default for C/C++ in nvim 0.12).
     end
   end,
 })
