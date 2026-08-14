@@ -74,24 +74,26 @@ require('lualine').setup({
   },
 })
 
-require('blink.cmp').setup({
-  fuzzy = {
-    implementation = 'prefer_rust_with_warning',
-  },
-  keymap = { preset = 'super-tab' },
-  appearance = {
-    use_nvim_cmp_as_default = true,
-    nerd_font_variant = 'mono',
-  },
-  sources = {
-    default = {
-      'lsp',
-      'path',
-      'snippets',
-      'buffer',
+if require('utils').is_vscode() == false then
+  require('blink.cmp').setup({
+    fuzzy = {
+      implementation = 'prefer_rust_with_warning',
     },
-  },
-})
+    keymap = { preset = 'super-tab' },
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = 'mono',
+    },
+    sources = {
+      default = {
+        'lsp',
+        'path',
+        'snippets',
+        'buffer',
+      },
+    },
+  })
+end
 
 require('conform').setup({
   formatters_by_ft = {
