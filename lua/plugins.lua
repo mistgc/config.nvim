@@ -1,6 +1,9 @@
 vim.pack.add({
+  {
+    src = 'https://github.com/catppuccin/nvim',
+    name = 'catppuccin',
+  },
   'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/ellisonleao/gruvbox.nvim',
   'https://github.com/stevearc/oil.nvim',
   'https://github.com/echasnovski/mini.icons',
   'https://github.com/nvim-telescope/telescope.nvim',
@@ -26,10 +29,9 @@ vim.pack.add({
   },
 })
 
-require('fidget').setup()
+vim.cmd.colorscheme('catppuccin-mocha')
 
-require('gruvbox').setup({ contrast = 'hard' })
-vim.cmd.colorscheme('gruvbox')
+require('fidget').setup()
 
 require('bufferline').setup({
   options = {
