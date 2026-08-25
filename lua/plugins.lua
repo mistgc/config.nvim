@@ -19,6 +19,7 @@ vim.pack.add({
   'https://github.com/folke/which-key.nvim',
   'https://github.com/rafamadriz/friendly-snippets',
   'https://github.com/neovim-treesitter/treesitter-parser-registry',
+  'https://github.com/sindrets/diffview.nvim',
   {
     src = 'https://github.com/neovim-treesitter/nvim-treesitter',
     version = 'main',
@@ -26,6 +27,30 @@ vim.pack.add({
   {
     src = 'https://github.com/saghen/blink.cmp',
     version = vim.version.range('1.*'),
+  },
+})
+
+local diffview_actions = require('diffview.actions')
+require('diffview').setup({
+  keymaps = {
+    file_panel = {
+      ['j'] = false,
+      ['k'] = false,
+      ['l'] = false,
+      ['i'] = false,
+      { 'n', 'n', diffview_actions.next_entry, { desc = 'Bring the cursor to the next file entry' } },
+      { 'n', 'e', diffview_actions.prev_entry, { desc = 'Bring the cursor to the previous file entry' } },
+      { 'n', 'i', diffview_actions.select_entry, { desc = 'Open the diff for the selected entry' } },
+      { 'n', 'l', diffview_actions.listing_style, { desc = "Toggle between 'list' and 'tree' views" } },
+    },
+    file_history_panel = {
+      ['j'] = false,
+      ['k'] = false,
+      ['l'] = false,
+      { 'n', 'n', diffview_actions.next_entry, { desc = 'Bring the cursor to the next file entry' } },
+      { 'n', 'e', diffview_actions.prev_entry, { desc = 'Bring the cursor to the previous file entry' } },
+      { 'n', 'i', diffview_actions.select_entry, { desc = 'Open the diff for the selected entry' } },
+    },
   },
 })
 
