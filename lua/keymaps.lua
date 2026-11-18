@@ -18,7 +18,7 @@ vim.keymap.set('n', 'P', '"+p', { noremap = true, silent = true })
 vim.keymap.set('n', '<c-w>h', '<c-w>h', { noremap = true, silent = true })
 vim.keymap.set('n', '<c-w>n', '<c-w>j', { noremap = true, silent = true })
 vim.keymap.set('n', '<c-w>e', '<c-w>k', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-w>i', '<c-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-w>i', '<c-w>l', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<M-h>', '<c-w>h', { noremap = true, silent = true })
 vim.keymap.set('n', '<M-n>', '<c-w>j', { noremap = true, silent = true })
@@ -34,6 +34,8 @@ vim.keymap.set('n', '<C-a>', 'gg<s-v>G', { noremap = true, silent = true })
 vim.keymap.set('n', '-', '<cmd>Oil<cr>', { noremap = true, silent = true })
 
 vim.keymap.set('t', '<ESC>', '<c-\\><c-n>', { noremap = true, silent = true, desc = 'exit terminal' })
+
+vim.keymap.set('n', '<c-e>', '<cmd>NvimTreeToggle<cr>', { noremap = true, silent = true, desc = 'nvim-tree Toggle' })
 
 vim.keymap.set('v', '<leader>ft', function()
   require('utils').fmt_md_table()
