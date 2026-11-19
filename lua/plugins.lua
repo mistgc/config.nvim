@@ -21,6 +21,7 @@ vim.pack.add({
   'https://github.com/sindrets/diffview.nvim',
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/nvim-tree/nvim-tree.lua',
+  'https://github.com/mistgc/sshdev.nvim',
   {
     src = 'https://github.com/saghen/blink.cmp',
     version = vim.version.range('1.*'),
@@ -54,6 +55,9 @@ require('diffview').setup({
 vim.cmd.colorscheme('catppuccin-mocha')
 
 require('fidget').setup()
+require('sshdev').setup({
+    download_mirror = 'https://gh-proxy.org/https://github.com/neovim/neovim/releases/download'
+})
 
 require('bufferline').setup({
   options = {
