@@ -170,4 +170,30 @@ function M.autocmd(event, opts)
   return vim.api.nvim_create_autocmd(event, opts)
 end
 
+function M.setup_shell()
+  local is_windows = vim.fn.has("win32") == 1
+  local function has(cmd)
+    return vim.fn.executable(cmd) == 1
+  end
+
+  if is_windows then
+    for _, sh in ipairs({ "pwsh.exe", "pwsh", "powershell.exe", "powershell" }) do
+      if has(sh) then
+        vim.o.shell = sh
+        vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+        vim.o.shellquote = ""
+        vim.o.shellxquote = ""
+        return
+      end
+    end
+  else
+    for _, sh in ipairs({ "fish", "zsh", "bash" }) do
+      if has(sh) then
+        vim.o.shell = sh
+        return
+      end
+    end
+  end
+end
+
 return M

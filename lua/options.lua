@@ -22,3 +22,5 @@ vim.opt.sidescrolloff = 8
 vim.opt.expandtab = true
 vim.opt.wildmenu = true
 vim.opt.listchars = { tab = '▸ ', trail = '·', precedes = '←', extends = '→' }
+
+require('utils').setup_shell()
