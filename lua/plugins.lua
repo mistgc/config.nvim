@@ -83,6 +83,9 @@ require("nvim-tree").setup({
       vim.keymap.set("n", "e", "", { buffer = bufnr })
       vim.keymap.del("n", "e", { buffer = bufnr })
 
+      vim.keymap.set("n", "E", "", { buffer = bufnr })
+      vim.keymap.del("n", "E", { buffer = bufnr })
+
       vim.keymap.set("n", "F", "", { buffer = bufnr })
       vim.keymap.del("n", "F", { buffer = bufnr })
 
